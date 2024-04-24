@@ -1,0 +1,11 @@
+# For media keys
+# Decided to put it here for now, might remove later lol
+
+#bind = , 115, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+
+#bind = , 114, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+
+exec = [workspace 2] alacritty -e ncmpcpp
+exec = [workspace 2] alacritty -e ncmpcpp -s visualizer
+exec = [workspace 2] alacritty -e ncmpcpp -s media_library
+
+#exec = [workspace 2] kunst --music_dir /mnt/Ares/songs

@@ -1,0 +1,3 @@
+exec = [workspace 3] alacritty -e programs/eww/eww daemon --debug --log
+exec = [workspace 3] alacritty -e cd programs/eww && ./eww
+exec = [workspace 3] alacritty -e cd .config/eww

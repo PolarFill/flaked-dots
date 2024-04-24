@@ -1,0 +1,56 @@
+source = ~/.config/hypr/themes/rose_pine.conf    # Rose pine thee
+source = ~/.config/hypr/sources/envs.conf	 # Sets environment variables
+source = ~/.config/hypr/sources/exec.conf        # Defines applications to be executed on init
+source = ~/.config/hypr/sources/keybinds.conf    # Defines keybinds
+source = ~/.config/hypr/sources/binds.conf	 # Binds keys
+
+#source = ~/.config/hypr/sources/song_keybinds	 # Opens ncmpcpp at workspace 2 
+################
+
+################
+
+########################
+
+# CM (Complex Move) submap
+
+bind = $MainMod, R, submap, cm
+
+submap = cm
+binde = ,1, movewindow, mon:HDMI-A-1			# Move window to primary monitor
+binde = ,2, movewindow, mon:DVI-I-1			# Move window to secondary monitor
+binde = ,right, movewindowpixel, 100 100, e
+bind = , escape, submap, reset
+
+submap = reset
+
+########################
+
+# Define input vars
+
+input {
+	kb_layout = br
+	
+	force_no_accel = true
+	follow_mouse = 1
+	mouse_refocus = false
+}
+
+general {
+	no_cursor_warps = nooooo pls,
+	gaps_in = 4,
+    	gaps_out = 8,
+    	border_size = 2,
+	col.active_border = $love, 
+	col.inactive_border = $muted
+	max_fps = 144
+}
+
+decoration {
+
+}
+
+##########################
+
+#windowrulev2 = float, class:(firefoxdeveloperedition), title:(Firefox)
+#windowrulev2 = center, class:(firefoxdeveloperedition), title:(Firefox)
+#
