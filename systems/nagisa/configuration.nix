@@ -86,6 +86,7 @@
   environment.systemPackages = with pkgs; [
      neovim 
      doas
+     git
   ];
 
   system.stateVersion = "23.11";
