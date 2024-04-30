@@ -17,7 +17,15 @@
         withSystemVencord = false;
        })
     ];
-    
+
+    xdg.desktopEntries.vesktop = {
+      name = "Vesktop";
+      genericName = "Discord";
+      exec = "vesktop --use-gl=angle --use-angle=vulkan --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto";
+      terminal = false;
+      categories = [ "social" ];
+    };
+
     xdg.configFile."vesktop/settings.json" = {
       text = builtins.toJSON {
          discordBranch = "canary";
