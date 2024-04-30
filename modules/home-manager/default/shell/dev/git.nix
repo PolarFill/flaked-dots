@@ -30,7 +30,7 @@
       extraConfig = {
         credential = {
           credentialStore = "secretservice";
-	  helper = "${nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
+	  helper = "${config.nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
 	};
         init = { defaultBranch = "main"; };
 	push = { autoSetupRemote = true; };
