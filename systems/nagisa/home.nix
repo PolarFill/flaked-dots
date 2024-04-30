@@ -33,6 +33,7 @@
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
 
     applications.misc.xdragon.enable = true;
+    applications.misc.mangohud.enable = true;
   };
 
 #  stylix.image = pkgs.fetchurl {

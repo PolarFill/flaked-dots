@@ -10,6 +10,7 @@
     hardware.nvidia.enable = true;
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     os.pipewire.enable = true;
+    applications.steam.enable = true;
 
   }; 
 

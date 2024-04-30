@@ -7,5 +7,6 @@ in {
   imports = [
     ./hardware
     ./os
+    ./applications
   ];
 }

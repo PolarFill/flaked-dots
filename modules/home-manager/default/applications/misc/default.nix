@@ -5,6 +5,7 @@ let
 in {
   imports = [
     ./xdragon.nix
+    ./mangohud.nix
   ];
 }
 
