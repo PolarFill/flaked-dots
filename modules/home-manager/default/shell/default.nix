@@ -1,4 +1,4 @@
-{ config, ...  }:
+{ config, ... }:
 
 let
   cfg = config.modules.shell;
@@ -7,5 +7,8 @@ in {
     ./fish/fish.nix
     ./shell-utils.nix
     ./shellFun.nix
+    ./dev
   ];
 }
+
+

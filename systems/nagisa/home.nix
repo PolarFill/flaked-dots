@@ -22,6 +22,8 @@
 
 #    system.audio.mopidy.enable = true;
 
+    shell.dev.git = { enable = true; };
+
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; };
     
     applications.web.firefox.enable = true;
