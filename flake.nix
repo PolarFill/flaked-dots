@@ -25,13 +25,20 @@
 	  inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-        stylix.url = "github:danth/stylix";
         arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
-	nur.url = "github:nix-community/NUR";
+	
+	nur = {
+	  url = "github:nix-community/NUR";
+	  inputs.nixpkgs.follows = "nixpkgs";
+	};
+	chaotic-cx = {
+          url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+	  inputs.nixpkgs.follows = "nixpkgs";
+	};
 
 };
 
-    outputs = { self, nixpkgs, home-manager, stylix, nur, ... } @ inputs:
+    outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, ... } @ inputs:
 
     let
 
@@ -60,7 +67,7 @@
                 "${nagisaSysPath}/configuration.nix"
 		"${nagisaSysPath}/hardware-configuration.nix"
                 nur.nixosModules.nur
-		#stylix.nixosModules.stylix
+		chaotic-cx.nixosModules.default
 		home-manager.nixosModules.home-manager {
                   home-manager = {
                       useGlobalPkgs = true;
