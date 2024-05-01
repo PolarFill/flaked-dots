@@ -20,6 +20,10 @@
           url = "github:hyprland-community/hyprkeys";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+        hyprland-portal = {
+          url = "github:hyprwm/xdg-desktop-portal-hyprland";
+	  inputs.nixpkgs.follows = "nixpkgs";
+	};
 
         stylix.url = "github:danth/stylix";
         arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
