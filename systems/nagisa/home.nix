@@ -18,7 +18,7 @@
     system.graphics.hyprland.enable = true;
     system.graphics.hyprcursor.enable = true;
     system.graphics.gtk.enable = true;              
-#    system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
+    system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
 
 #    system.audio.mopidy.enable = true;
 

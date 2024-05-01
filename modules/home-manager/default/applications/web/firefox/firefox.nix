@@ -153,6 +153,10 @@
 	          { name = "Nixpkgs search"; url = "https://search.nixos.org/packages"; }
 	          { name = "Home-manager search"; url = "https://home-manager-options.extranix.com/"; }
 	          { name = "awesome-nix"; url = "https://github.com/nix-community/awesome-nix"; }
+		  { name = "nix.dev"; url = "https://nix.dev/"; }
+		  { name = "Nix official wiki"; url = "https://wiki.nixos.org/"; }
+		  { name = "Chaotic-nyx package list"; url = "https://www.nyx.chaotic.cx/#lists-of-options-and-packages"; }
+		  { name = "List of builtins and lib"; url = "https://teu5us.github.io/nix-lib.html"; }
 		];
 	      }
 	    ];
