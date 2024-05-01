@@ -28,7 +28,7 @@
 
     xdg.configFile."vesktop/HomeManagerInit_settings.json" = {
       text = builtins.toJSON {
-         discordBranch = "canary";
+         discordBranch = "stable";
          minimizeToTray = "off";
        };
       onChange = ''  
@@ -44,7 +44,7 @@
     text = builtins.toJSON {
       enableReactDevtools = true;
       plugins = {
-        BadgeAPI.enabled = true;
+        BadgeAPI.enabled = false;
 	WhoReacted.enabled = true;
 	WebKeybinds.enabled = true;
 	ViewRaw.enabled = true;
