@@ -9,7 +9,9 @@
   ];
 
   homeModules.default = {
-    
+
+    scripts = { enable = true; all = true; };
+
     shell.fish = { enable = true; theme = "rose-pine"; };
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
