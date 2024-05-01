@@ -1,5 +1,5 @@
 # Portals allow applications to communicate via dbus interfaces under a specified
-# name and object path. They are necessary for ex: open default apps, share screen, etc
+# name and object path. They are necessary for ex open default apps, share screen, etc
 # This, for the time being, uses gtk for FileChooser impl without choice.
 
 { inputs, pkgs, lib, config, ... }:
@@ -27,7 +27,6 @@
     home.packages = with pkgs; [
        xdg-utils # Needed to open default applications
        xdg-desktop-portal
-       xdg-desktop-portal-hyprland
     ];
 
     xdg.portal = {
@@ -38,7 +37,11 @@
 	  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
 	};
       };
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];    
+      extraPortals = [ 
+        pkgs.xdg-desktop-portal-gtk 
+	inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland 
+        pkgs.xdg-desktop-portal-wlr
+      ];
     };
   };
 }

@@ -23,10 +23,10 @@
       genericName = "Discord";
       exec = "vesktop --use-gl=angle --use-angle=vulkan --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto";
       terminal = false;
-      categories = [ "social" ];
+      categories = [ "X-Social" ];
     };
 
-    xdg.configFile."vesktop/settings.json" = {
+    xdg.configFile."vesktop/HomeManagerInit_settings.json" = {
       text = builtins.toJSON {
          discordBranch = "canary";
          minimizeToTray = "off";
@@ -40,7 +40,7 @@
       '';
     };
 
-    xdg.configFile."vesktop/settings/settings.json" = {
+    xdg.configFile."vesktop/settings/HomeManagerInit_settings.json" = {
     text = builtins.toJSON {
       enableReactDevtools = true;
       plugins = {
