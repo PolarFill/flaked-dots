@@ -5,6 +5,8 @@
     outputs.nixosModules.default
   ];
 
+  home-manager.backupFileExtension = "backup";
+
   nixosModules.default = {
     
     hardware.nvidia.enable = true;
