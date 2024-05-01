@@ -13,6 +13,10 @@
 
   config = lib.mkIf cfg.enable {   
 
+    environment.systemPackages = [
+      "gamemode"
+    ];
+
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -24,6 +28,22 @@
       ];
     };
 
+    programs.gamemode.settings = {
+      enable = true;
+      enableRenice = true;
+
+      settings = {
+        custom = {
+          start = "echo \"Running with gamemode!\"";
+	};
+	general = {
+          desiredgov = "performance";
+	  igpu_desiredgov = "powersave";
+	  softrealtime = "auto";
+	  renice = 10
+	}
+      };
+    };
   };
 }
 
