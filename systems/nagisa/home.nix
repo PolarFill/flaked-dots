@@ -20,7 +20,7 @@
     system.graphics.hyprland.enable = true;
     system.graphics.hyprcursor.enable = true;
     system.graphics.gtk.enable = true;              
-    system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
+    system.xdg.portals = { enable = true; defaultPortal = "*"; };
 
 #    system.audio.mopidy.enable = true;
 

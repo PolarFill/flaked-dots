@@ -34,13 +34,13 @@
       config = {
         common = {
 	  default = [ "${cfg.defaultPortal}" ];
-	  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+	 # "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
 	};
       };
       extraPortals = [ 
         pkgs.xdg-desktop-portal-gtk 
 	inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland 
-        pkgs.xdg-desktop-portal-wlr
+        #pkgs.xdg-desktop-portal-wlr
       ];
     };
   };
