@@ -24,6 +24,9 @@
       systemd.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       extraConfig = builtins.readFile ./hypr/hyprland.conf;
+      plugins = [
+        pkgs.hyprpaper
+      ];
     };
 
     home.file = {

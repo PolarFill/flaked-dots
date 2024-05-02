@@ -14,7 +14,7 @@
   config = lib.mkIf cfg.enable {   
 
     environment.systemPackages = [
-      "gamemode"
+      pkgs.gamemode
     ];
 
     programs.steam = {
@@ -40,8 +40,8 @@
           desiredgov = "performance";
 	  igpu_desiredgov = "powersave";
 	  softrealtime = "auto";
-	  renice = 10
-	}
+	  renice = 10;
+	};
       };
     };
   };
