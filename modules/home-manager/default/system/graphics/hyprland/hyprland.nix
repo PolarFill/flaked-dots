@@ -14,7 +14,12 @@
   config = lib.mkIf cfg.enable {   
 
     home.packages = [
+      pkgs.gammastep # Needed for submap prettiness
+      pkgs.swww
+
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+      inputs.hyprland-contrib.packages.${pkgs.system}.try_swap_workspace
+      inputs.hyprland-contrib.packages.${pkgs.system}.scratchpad
     ];
 
     # Config too big for me to move it to nix rn
@@ -25,7 +30,9 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       extraConfig = builtins.readFile ./hypr/hyprland.conf;
       plugins = [
-        pkgs.hyprpaper
+#        inputs.hyprfocus.packages.${pkgs.system}.hyprfocus
+#	inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+#	inputs.hyprland-virtual-desktops.packages.${pkgs.system}.virtual-desktops
       ];
     };
 

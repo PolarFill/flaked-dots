@@ -4,6 +4,7 @@
 
 let
   cfg = config.homeModules.default.scripts;
+  scriptDirAttr = builtins.readDir ./scripts;
 in {
   options.homeModules.default.scripts = {
 
@@ -21,7 +22,7 @@ in {
     
     scripts = lib.options.mkOption {
       default = false;
-      type = lib.types.listOf str;
+      type = lib.types.listOf lib.types.str;
       description = "Which scripts to enable. Ignored if \"all\" option is set.";
     };
   };
@@ -31,8 +32,8 @@ in {
     home.sessionPath = 
       
       if cfg.all
-      then lib.attrsets.mapAttrsToList ( name: value: ./scripts/${name} ) builtins.readDir ./scripts
-      else lib.lists.concatMap (x: [ ./scripts/${x}]  ) cfg.scripts ;
+      then lib.attrsets.mapAttrsToList ( name: value: "${./scripts/${name}}" ) scriptDirAttr # + [ "${./scripts}" ]
+      else lib.lists.concatMap (x: ["${./scripts/${x}}"] ) cfg.scripts;
     
   };
 }
