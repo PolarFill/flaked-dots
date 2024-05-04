@@ -10,32 +10,41 @@
 	    inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-        hyprland.url = "github:hyprwm/Hyprland";
-	
-	hyprland-contrib = {
-          url = "github:hyprwm/contrib";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };      
-        hyprkeys = {
-          url = "github:hyprland-community/hyprkeys";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
-        hyprland-portal = {
-          url = "github:hyprwm/xdg-desktop-portal-hyprland";
-	  inputs.nixpkgs.follows = "nixpkgs";
-	};
-
         arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
 	
-	nur = {
-	  url = "github:nix-community/NUR";
-	  inputs.nixpkgs.follows = "nixpkgs";
-	};
+	nur.url = "github:nix-community/NUR";
+	
 	chaotic-cx = {
           url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 	  inputs.nixpkgs.follows = "nixpkgs";
 	};
 
+        hyprland.url = "github:hyprwm/Hyprland";
+	
+	hyprland-contrib = {
+          url = "github:hyprwm/contrib";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };     
+	hyprlang = {
+          url = "github:hyprwm/hyprlang";
+	  # inputs.nixpkgs.follows = "hyprland";
+	};
+	hyprland-plugins = {
+          url = "github:hyprwm/hyprland-plugins";
+	  inputs.hyprland.follows = "hyprland";
+	};
+#	hyprfocus = {
+#          Broken
+#          url = "github:pyt0xic/hyprfocus";
+#          inputs.hyprland.follows = "hyprland";
+#	};
+	hyprland-virtual-desktops = {
+          url = "github:levnikmyskin/hyprland-virtual-desktops";
+	  inputs.nixpkgs.follows = "hyprland";
+	};
+        hyprland-portal = {
+          url = "github:hyprwm/xdg-desktop-portal-hyprland";
+	};
 };
 
     outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, ... } @ inputs:
@@ -46,8 +55,6 @@
       systems = [ "x86_64-linux" ];                    # Only x86_64 for now
       withAllSystems = nixpkgs.lib.genAttrs systems;   # Will gen attrs for each specified system
 
-      stylix.homeManagerIntegration.followSystem = false;
-      
       nagisaSysPath = "${self}/systems/nagisa";
 
     in {
