@@ -102,13 +102,14 @@
 #          bypass-paywalls-clean
 	  ublock-origin
 	  fastforwardteam
-	  istilldontcareaboutcookies
+#	  istilldontcareaboutcookies
 	  violentmonkey
 	  darkreader
 	  sponsorblock
 	  web-scrobbler
 	  libredirect
           export-tabs-urls-and-titles
+	  terms-of-service-didnt-read
 	];
 
 	search.default = "DuckDuckGo";
