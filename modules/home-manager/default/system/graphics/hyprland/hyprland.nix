@@ -17,7 +17,7 @@
       pkgs.gammastep # Needed for submap prettiness
       pkgs.swww
 
-      inputs.hyprlang.packages.${pkgs.system}.hyprlang
+#      inputs.hyprlang.packages.${pkgs.system}.hyprlang
 
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       inputs.hyprland-contrib.packages.${pkgs.system}.try_swap_workspace
