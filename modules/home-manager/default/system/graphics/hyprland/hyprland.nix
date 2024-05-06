@@ -33,7 +33,7 @@
       extraConfig = builtins.readFile ./hypr/hyprland.conf;
       plugins = [
 #        inputs.hyprfocus.packages.${pkgs.system}.hyprfocus
-	inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+#	inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
 #	inputs.hyprland-virtual-desktops.packages.${pkgs.system}.virtual-desktops
       ];
     };

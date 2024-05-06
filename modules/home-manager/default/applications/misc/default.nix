@@ -6,6 +6,7 @@ in {
   imports = [
     ./xdragon.nix
     ./mangohud.nix
+    ./libreoffice.nix
   ];
 }
 
