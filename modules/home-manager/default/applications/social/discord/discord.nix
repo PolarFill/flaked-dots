@@ -4,11 +4,19 @@
     cfg = config.homeModules.default.applications.social.discord;
   in {
     options.homeModules.default.applications.social.discord = {
+      
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;
         description = "Enables discord canary (vesktop + openASAR)!";
       };
+
+      theme = lib.options.mkOption {
+        default = [ "default" ];
+	type = lib.types.listOf lib.types.str;
+	description = "Selects the theme to be symlinked and loaded into vesktop.";
+      };
+
     };
 
   config = lib.mkIf cfg.enable {   
@@ -17,6 +25,13 @@
         withSystemVencord = false;
        })
     ];
+
+    home.file = {
+      vesktop_theme = lib.mkIf ( cfg.theme != "default" ) {
+        target = ".config/vesktop/themes/";
+	source = ./themes;
+      };
+    };
 
     xdg.desktopEntries.vesktop = {
       name = "Vesktop";
@@ -118,6 +133,9 @@
 	AlwaysTrust.enabled = true;
 	AlwaysAnimate.enabled = true;
         };
+
+      useQuickCss = true;
+      enabledThemes = lib.mkIf ( cfg.theme != "default" ) cfg.theme;
       };
    onChange = ''  
       # Vesktop doesn't play very nice with settings.json read-only. So we make it rw with some tricks
