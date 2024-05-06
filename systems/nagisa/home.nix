@@ -30,7 +30,7 @@
     
     applications.web.firefox.enable = true;
     
-    applications.social.discord = { enable = true; theme = "rose-pine"; };
+    applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
 
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
 
