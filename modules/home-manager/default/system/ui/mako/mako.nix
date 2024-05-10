@@ -22,13 +22,13 @@
   config = lib.mkIf cfg.enable {   
 
     home.packages = with pkgs; [
-      mako
       libnotify
     ];
 
-    programs.mako = {
-      extraConfig = ''  ${ if (cfg.theme != null) then builtins.readFile ./themes/${cfg.theme}.conf else "" } '';
+    services.mako = {
+      enable = true;
+      extraConfig = "${ if (cfg.theme != null) then builtins.readFile ./themes/${cfg.theme}.conf else "" }";
+      defaultTimeout = 7000;
     };
-
   };
 }
