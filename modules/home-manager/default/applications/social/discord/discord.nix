@@ -12,7 +12,7 @@
       };
 
       theme = lib.options.mkOption {
-        default = [ "default" ];
+        default = [ "null" ] ;
 	type = lib.types.listOf lib.types.str;
 	description = "Selects the theme to be symlinked and loaded into vesktop.";
       };
@@ -59,7 +59,7 @@
     text = builtins.toJSON {
       enableReactDevtools = true;
       plugins = {
-        BadgeAPI.enabled = false;
+        BadgeAPI.enabled = true;
 	WhoReacted.enabled = true;
 	WebKeybinds.enabled = true;
 	ViewRaw.enabled = true;
@@ -132,10 +132,33 @@
 	BANger.enabled = true;
 	AlwaysTrust.enabled = true;
 	AlwaysAnimate.enabled = true;
+	MoreUserTags.enabled = true;
+	MutualGroupDMs.enabled = true;
+	MoreKaomoji.enabled = true;
+	MessageLinkEmbeds.enabled = true;
+	NoPendingCount.enabled = true;
+	NSFWGateBypass.enabled = true;
+	QuickReply.enabled = true;
+	ReplyTimestamp.enabled = true;
+	ReserveImageSearch.enabled = true;
+	RelationshipNotifier.enabled = true;
+	ShikiCodeblocks.enabled = true;
+	StreamerModeOnStream.enabled = true;
+	VoiceDownload.enabled = true;
+	BetterRoleDot.enabled = true;
+	BetterSettings.enabled = true;
+	BetterSessions.enabled = true;
+	BetterRoleContext.enabled = true;
+	F8Break.enabled = true;
+	FixSpotifyEmbeds.enabled = true;
+	GreetStickerPicker.enabled = true;
+	ImageLink.enabled = true;
+	ImplicitRelationships.enabled = true;
+	MessageLatency.enabled = true;
         };
 
       useQuickCss = true;
-      enabledThemes = cfg.theme; #lib.mkIf ( cfg.theme != [ "default" ] ) cfg.theme;
+      enabledThemes = if ( cfg.theme != [ "null" ] ) then lib.lists.forEach cfg.theme ( value: value + ".css" ) else [ "" ];
       };
    onChange = ''  
       # Vesktop doesn't play very nice with settings.json read-only. So we make it rw with some tricks
