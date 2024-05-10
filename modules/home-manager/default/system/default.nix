@@ -7,5 +7,6 @@ in {
     ./graphics
     ./xdg
     ./fonts.nix
+    ./ui
   ];
 }

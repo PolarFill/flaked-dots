@@ -20,7 +20,8 @@
     system.graphics.hyprland.enable = true;
     system.graphics.hyprcursor.enable = true;
     system.graphics.gtk.enable = true;              
-    system.xdg.portals = { enable = true; defaultPortal = "*"; };
+    system.ui.mako = { enable = true; theme = "rose-pine"; };
+    system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
 
 #    system.audio.mopidy.enable = true;
 
@@ -38,20 +39,6 @@
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
   };
-
-#  stylix.image = pkgs.fetchurl {
-#    url = "https://w.wallhaven.cc/full/ox/wallhaven-ox816p.jpg";
-#    sha256 = "09h08xqpkbhlsv7phjqmbd67r3nhw9b1k54i3jyznymb2zxnp0ns";
-#  };
-
-#  stylix.base16Scheme = pkgs.fetchFromGitHub {
-#    owner = "edunfelt";
-#    repo = "base16-rose-pine-scheme";
-#    rev = "4161952824f4ede6c3eb73ef6b5f3609a76cf69a";
-#    hash = "sha256-VW5M6+P3XeKU26h7QQiwicYFTczOXfpfskN9jFovxJ4=";
-#  } + "/rose-pine.yaml";
-
-#  stylix.targets.alacritty.enable = false;
 
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
