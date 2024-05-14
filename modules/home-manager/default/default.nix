@@ -8,6 +8,7 @@ in {
     ./shell
     ./applications
     ./system
+    ./dev
   ];
 }
 
