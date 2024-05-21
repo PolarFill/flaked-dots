@@ -48,7 +48,8 @@
 
       settings = {
         custom = {
-          start = "echo \"Running with gamemode!\"";
+          start = "nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'";
+	  end = "nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=0'";
 	};
 	general = {
           desiredgov = "performance";
