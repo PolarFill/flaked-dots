@@ -3,6 +3,7 @@
 {
   imports = [
     outputs.nixosModules.default
+    ./secrets/sops-nix.nix
   ];
 
   home-manager.backupFileExtension = "backup";

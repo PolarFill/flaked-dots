@@ -6,19 +6,21 @@
   ];
 
   sops = {
-    
-    defaultSopsFile = ./secrets/secrets.yaml;
+
+    defaultSopsFile = ./age_secrets/default_secrets.yaml;
     defaultSopsFormat = "yaml";
   
-    age.keyFile = "/home/${cfg.user}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/skynet/.config/sops/age/keys.txt";
   
-    secrets = {
-      "age_secrets/lastfm_secrets.yaml" = {
-        owner = "skynet";
-      };
-      "age_secrets/user_secrets.yaml" = {
-        owner = "skynet";
-      };
+   # secrets = {
+   #   "auth/lastfm/password" = {
+   #     owner = "skynet";
+   #   };
+
+   #   "skynet" = {
+   #     owner = "skynet";
+   #   };
+
     };
-  };
 }
+
