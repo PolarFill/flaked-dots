@@ -47,8 +47,14 @@
   home.username = "skynet";
   home.homeDirectory = "/home/skynet";
   home.sessionVariables = {
+
       EDITOR = "nvim";
       NIXOS_OZONE_WL = "1";
+
+      __GL_THREADED_OPTIMIZATION = "1";
+      __GL_SHADER_DISK_CACHE = "1";
+      __GL_SHADER_DISK_CACHE_PATH = "~/.cache/gl_cache";
+
   };
 
   fonts.fontconfig.enable = true;

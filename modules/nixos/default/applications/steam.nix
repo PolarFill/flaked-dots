@@ -26,6 +26,20 @@
         pkgs.proton-ge-bin
 	pkgs.luxtorpeda
       ];
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+	];
+      };
     };
 
     programs.gamemode.settings = {
@@ -34,7 +48,8 @@
 
       settings = {
         custom = {
-          start = "echo \"Running with gamemode!\"";
+          start = "nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'";
+	  end = "nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=0'";
 	};
 	general = {
           desiredgov = "performance";
