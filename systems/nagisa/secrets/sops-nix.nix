@@ -12,15 +12,19 @@
   
     age.keyFile = "/home/skynet/.config/sops/age/keys.txt";
   
-   # secrets = {
-   #   "auth/lastfm/password" = {
-   #     owner = "skynet";
-   #   };
+    secrets = {
+      "auths/lastfm/password" = {
+        owner = "skynet";
+      };
 
-   #   "skynet" = {
-   #     owner = "skynet";
-   #   };
+      "auths/lastfm/user" = {
+        owner = "skynet";
+      };
 
+      "skynet/password" = {
+        neededForUsers = true;
+      };
     };
+  };
 }
 
