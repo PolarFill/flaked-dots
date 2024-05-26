@@ -159,6 +159,7 @@
 		  { name = "Chaotic-nyx package list"; url = "https://www.nyx.chaotic.cx/#lists-of-options-and-packages"; }
 		  { name = "List of builtins and lib"; url = "https://teu5us.github.io/nix-lib.html"; }
 		  { name = "Noogle.dev"; url = "https://noogle.dev"; }
+		  { name = "FlakeHub"; url = "https://flakehub.com/flakes"; }
 		  { name = "NixPkgs Track"; bookmarks = [
 		    { name = "NixPkgs issue tracker"; url = "https://nixpk.gs/"; }
 		    { name = "NixPkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
