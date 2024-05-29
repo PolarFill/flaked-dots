@@ -9,5 +9,6 @@ in {
     ./web
     ./misc
     ./rice
+    ./music
   ];
 }

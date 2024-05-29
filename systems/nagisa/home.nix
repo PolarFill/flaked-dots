@@ -6,6 +6,9 @@
     outputs.homeModules.default 
     inputs.arkenfox.hmModules.default
     inputs.nur.hmModules.nur
+    inputs.sops-nix.homeManagerModule
+    
+    ./secrets/sops-nix.nix
   ];
 
   homeModules.default = {
@@ -23,8 +26,6 @@
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
 
-#    system.audio.mopidy.enable = true;
-
     shell.dev.git = { enable = true; };
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; };
@@ -34,6 +35,8 @@
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
 
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
+
+    applications.music.mpd = { enable = true; scrobbler_type = "mpdscribble"; };
 
     applications.misc.xdragon.enable = true;
     applications.misc.mangohud.enable = true;
