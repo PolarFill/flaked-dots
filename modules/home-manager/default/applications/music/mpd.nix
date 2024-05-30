@@ -36,7 +36,22 @@
       network.startWhenNeeded = true;
       network.listenAddress = "127.0.0.1";
       
-      extraConfig = " auto_update      \"yes\" ";
+      extraConfig = ''
+        auto_update      "yes"
+
+	audio_output {
+          type           "fifo"
+          name           "my_fifo"
+          path           "/tmp/mpd.fifo"
+          format         "44100:16:2"
+        }
+        
+	audio_output {
+          type           "pipewire"
+          name           "PipeWire Sound Server"
+        }
+
+      '';
     };
 
     systemd.user.services.mpdscribble = lib.mkIf ( cfg.scrobbler_type == "mpdscribble" ) {
@@ -45,16 +60,17 @@
         Description = "mpdscribble, a scrobbler for MPD, systemd service!";
         Documentation = [ "man:mpdscribble(1)" ];
         After = [ "mpd.service" ];
-        RequiresMountsFor = [ "/var/lib/mpd" ];
+       #RequiresMountsFor = [ "/var/lib/mpd" ];
       };
 
       Install = {
-        WantedBy = [ "multi-user.target" ];
+        WantedBy = [ "default.target" ];
       };
 
       Service = {
+        Type = "notify";
         Environment = "PATH=/run/current-system/sw/bin";
-        ExecStart = "${pkgs.mpdscribble}/bin/mpdscribble";
+        ExecStart = "${pkgs.mpdscribble}/bin/mpdscribble --no-daemon -v 2";
 	ExecStartPre = "${pkgs.writeShellScript "mpdscribble-init-config" '' 
 	  /run/current-system/sw/bin/mkdir -p ~/.mpdscribble
 	  /run/current-system/sw/bin/ln -s ${config.sops.secrets.conf_template.path} ~/.mpdscribble/mpdscribble.conf -f

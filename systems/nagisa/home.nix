@@ -36,6 +36,8 @@
 
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
 
+    applications.music.ncmpcpp.enable = true;
+    applications.music.nicotine.enable = true;
     applications.music.mpd = { enable = true; scrobbler_type = "mpdscribble"; };
 
     applications.misc.xdragon.enable = true;

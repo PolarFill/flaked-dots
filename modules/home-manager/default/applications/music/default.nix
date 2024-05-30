@@ -6,5 +6,7 @@ in {
   imports = [
     ./mopidy.nix
     ./mpd.nix
+    ./ncmpcpp.nix
+    ./nicotine.nix
   ];
 }
