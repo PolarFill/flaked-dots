@@ -6,5 +6,6 @@ in {
 
   imports = [
     ./pipewire.nix
+    ./fonts.nix
   ];
 }

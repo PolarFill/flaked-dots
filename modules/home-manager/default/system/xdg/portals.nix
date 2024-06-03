@@ -39,6 +39,7 @@
       };
       extraPortals = [ 
         pkgs.xdg-desktop-portal-gtk 
+	pkgs.xdg-desktop-portal-wlr
 	inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland
       ];
     };

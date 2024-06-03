@@ -1,3 +1,6 @@
+# Fonts with hm wont work, so theyre actually defined at system-level
+# In other words, dont bother using this lol, its only here if its someday needed
+
 { inputs, pkgs, lib, config, ... }:
 
   let
@@ -18,5 +21,6 @@
     home.packages = with pkgs; [
       noto-fonts
     ];
+
   };
 }

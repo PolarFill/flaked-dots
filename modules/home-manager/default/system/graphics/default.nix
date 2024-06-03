@@ -7,5 +7,6 @@ in {
     ./hyprland/hyprland.nix
     ./hyprcursor/hyprcursor.nix
     ./gtk/gtk.nix
+    ./swayfx.nix
   ];
 }

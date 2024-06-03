@@ -64,7 +64,7 @@
       };
 
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "mpd.service" ];
       };
 
       Service = {

@@ -21,6 +21,8 @@
 
 	sops-nix.url = "github:Mic92/sops-nix";
 
+        nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 	
 	hyprland-contrib = {
@@ -49,7 +51,7 @@
 	};
 };
 
-    outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, ... } @ inputs:
+    outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, nix-flatpak, ... } @ inputs:
 
     let
 
@@ -77,6 +79,7 @@
 		"${nagisaSysPath}/hardware-configuration.nix"
                 nur.nixosModules.nur
 		chaotic-cx.nixosModules.default
+		nix-flatpak.nixosModules.nix-flatpak
 		home-manager.nixosModules.home-manager {
                   home-manager = {
                       useGlobalPkgs = true;

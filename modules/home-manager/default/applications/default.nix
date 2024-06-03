@@ -10,5 +10,6 @@ in {
     ./misc
     ./rice
     ./music
+    ./flatpaks
   ];
 }

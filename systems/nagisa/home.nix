@@ -7,7 +7,8 @@
     inputs.arkenfox.hmModules.default
     inputs.nur.hmModules.nur
     inputs.sops-nix.homeManagerModule
-    
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+
     ./secrets/sops-nix.nix
   ];
 
@@ -15,18 +16,23 @@
 
     scripts = { enable = true; all = true; };
 
+    system.graphics.swayfx.enable = true;
+
     shell.fish = { enable = true; theme = "rose-pine"; };
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
     system.fonts.enable = true;
-    system.graphics.hyprland.enable = true;
-    system.graphics.hyprcursor.enable = true;
+#    system.graphics.hyprland.enable = true;
+#    system.graphics.hyprcursor.enable = true;
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
 
     shell.dev.git = { enable = true; };
+
+    applications.flatpaks.flatpak.enable = true;
+    applications.flatpaks.steam.enable = true;
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; };
     

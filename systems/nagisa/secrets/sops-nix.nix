@@ -13,6 +13,8 @@
     secrets = {
       "auths/lastfm/password" = {};
       "auths/lastfm/user" = {};
+      "auths/slsk/user" = {};
+      "auths/slsk/password" = {};
 
       "conf_template" = { sopsFile = ./age_secrets/lastfm_secrets.yaml; };
 

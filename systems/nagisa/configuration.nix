@@ -12,6 +12,7 @@
     hardware.nvidia.enable = true;
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     os.pipewire.enable = true;
+    os.fonts.enable = true;
     applications.steam.enable = true;
 
   }; 
@@ -44,6 +45,20 @@
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = [ inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
+  };
+
+#  services.flatpak = {
+#    enable = true;
+#    remotes = [ { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; } ];
+#    packages = [ { appId = "com.valvesoftware.Steam"; origin = "flathub-beta"; } ]
+#  };
+
+  services.flatpak.enable = true;
 
   security.sudo.enable = false;
   security.doas.enable = true;
@@ -82,7 +97,7 @@
     isNormalUser = true;
     initialPassword = "123456";
     description = "Main user";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
     packages = with pkgs; [];
   };
 
