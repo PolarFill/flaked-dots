@@ -18,7 +18,7 @@
    services.flatpak.enable = true;
 
    services.flatpak.packages = [
-     { appId = "com.valvesoftware.Steam"; origin = "flathub"; }
+     { appId = "com.valvesoftware.Steam"; origin = "flathub-beta"; }
    ];
 
   }; 

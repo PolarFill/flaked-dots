@@ -16,15 +16,17 @@
 
     scripts = { enable = true; all = true; };
 
-    system.graphics.swayfx.enable = true;
 
     shell.fish = { enable = true; theme = "rose-pine"; };
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
+    system.graphics.swayfx.enable = true;
+    
+    system.graphics.hyprland.enable = true;
+    system.graphics.hyprcursor.enable = true;
+
     system.fonts.enable = true;
-#    system.graphics.hyprland.enable = true;
-#    system.graphics.hyprcursor.enable = true;
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };

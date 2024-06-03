@@ -18,8 +18,7 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
-      update.onActivation = true;
-     # update.auto.enable = true;
+      update.auto.enable = true;
       remotes = [
         { 
 	  name = "flathub-beta"; 
