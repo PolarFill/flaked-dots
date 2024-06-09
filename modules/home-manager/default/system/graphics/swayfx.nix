@@ -18,6 +18,7 @@
     home.packages = with pkgs; [
       autotiling
       sway-contrib.grimshot
+      vulkan-validation-layers
     ];
 
     wayland.windowManager.sway = {
@@ -35,7 +36,25 @@
     wayland.windowManager.sway.config = {
       modifier = "Mod4";
       terminal = "alacritty";
-      focus.mouseWarping = false;
+      focus.mouseWarping = true;
+      floating.modifier = config.wayland.windowManager.sway.config.modifier;
+
+      startup = [
+        { command = "autotiling"; always = true; }
+      ];
+
+      input = {
+        "*" = {
+          accel_profile = "flat";
+	  xkb_layout = "br";
+	};
+      };
+
+      output = {
+        HDMI-A-1 = {
+	  mode = "1920x1080@143.981hz";
+	};
+      };
 
       keybindings = let
 	  mainMod = config.wayland.windowManager.sway.config.modifier;
@@ -45,8 +64,9 @@
 	in lib.mkOptionDefault {
           
 	  # Main actions
-	  "${mainMod}+Enter" = "exec alacritty";
-          "${mainMod}+Q" = ""
+          "${mainMod}+Q" = "kill";
+	  "${mainMod}+Tab" = "exec wofi --show drun";
+	 # "${mainMod}+F" = "fullscreen toggle";
 
           # Audio control
 	  "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+";
@@ -57,12 +77,20 @@
 	  "${mainMod}+Print" = "exec grimshot copysave area $HOME/screenshots/area/$(date +'%F-%T.png')";
 	  "${mainModS}+Print" = "exec grimshot copysave active $HOME/screenshots/active/$(date +'%F-%T.png')";
 
-          
-	  "${mainMod}"
+          # Tiling controls
+	  "${mainMod}+space" = "floating toggle";
+	  "${mainModS}+space" = "focus mode_toggle";
+
+	  # Scratchpad
+	  "${mainModS}+Insert" = "move scratchpad";
+	  "${mainMod}+Insert" = "scratchpad show";
       };
     };
 
-
+#    wayland.windowManager.sway.extraConfig = ''
+#      blur enable
+#      shadows enable
+#    '';
 
     home.sessionVariables = {
       _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -76,6 +104,7 @@
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
+      WLR_RENDERER = "gles2";
     };
   };
 }

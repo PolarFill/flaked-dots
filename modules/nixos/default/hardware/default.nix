@@ -5,7 +5,7 @@ let
 in {
 
   imports = [
-    ./nvidia.nix
+    ./nvidia
     ./storageDrives.nix
   ];
 

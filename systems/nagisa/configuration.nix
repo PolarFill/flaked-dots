@@ -9,7 +9,7 @@
 
   nixosModules.default = {
     
-    hardware.nvidia.enable = true;
+    hardware.nvidia.proprietary.enable = true;
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     os.pipewire.enable = true;
     os.fonts.enable = true;

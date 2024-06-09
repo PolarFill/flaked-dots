@@ -29,7 +29,7 @@
     system.fonts.enable = true;
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
-    system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
+    system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
 
     shell.dev.git = { enable = true; };
 
