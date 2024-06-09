@@ -5,5 +5,6 @@ let
 in {
   imports = [
     ./wofi/wofi.nix
+    ./swww/swww.nix
   ];
 }

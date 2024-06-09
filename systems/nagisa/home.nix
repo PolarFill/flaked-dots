@@ -26,7 +26,6 @@
     system.graphics.hyprland.enable = true;
     system.graphics.hyprcursor.enable = true;
 
-    system.fonts.enable = true;
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
@@ -43,6 +42,7 @@
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
 
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
+    applications.rice.swww = { enable = true; wallpaper = ./assets/frieren.jpeg; };
 
     applications.music.ncmpcpp.enable = true;
     applications.music.nicotine.enable = true;
