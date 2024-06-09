@@ -116,8 +116,18 @@
 	search.privateDefault = "DuckDuckGo";
 
 	extraConfig = ''
+	  # Disables UI hiding on fullscreen
 	  user_pref("browser.fullscreen.autohide", false);
+	  # Enables userChrome, used for pretty rfp letterbox
 	  user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+          # Disables clipboard API, for websites that block copying / pasting
+	  user_pref("dom.event.clipboardevents.enabled", false);
+	  # Enables a search box in large dropdown menus
+	  user_pref("dom.forms.selectSearch", true);
+	  # Enables GPU sandboxing (enabled by default on windows)
+	  user_pref("security.sandbox.gpu.level", true);
+	  # Enables fission website isolation layer
+	  user_pref("fission.autostart", true);
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)
@@ -161,6 +171,7 @@
 		  { name = "Noogle.dev"; url = "https://noogle.dev"; }
 		  { name = "FlakeHub"; url = "https://flakehub.com/flakes"; }
 		  { name = "NixOS Discourse"; url = "https://discourse.nixos.org"; }
+		  { name = "NixOS Types list"; url = "https://nlewo.github.io/nixos-manual-sphinx/development/option-types.xml.html"; }
 		  { name = "NixPkgs Track"; bookmarks = [
 		    { name = "NixPkgs issue tracker"; url = "https://nixpk.gs/"; }
 		    { name = "NixPkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
