@@ -6,7 +6,7 @@ in {
   imports = [
     ./graphics
     ./xdg
-    ./fonts.nix
     ./ui
+    ./misc
   ];
 }

@@ -4,9 +4,9 @@
 { inputs, pkgs, lib, config, ... }:
 
   let
-    cfg = config.homeModules.default.system.fonts;
+    cfg = config.homeModules.default.system.misc.fonts;
   in {
-    options.homeModules.default.system.fonts = {
+    options.homeModules.default.system.misc.fonts = {
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;
