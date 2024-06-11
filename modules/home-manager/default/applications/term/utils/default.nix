@@ -6,5 +6,6 @@ in {
   imports = [
     ./btop/btop.nix
     ./bat/bat.nix
+    ./zathura/zathura.nix
   ];
 }

@@ -18,10 +18,6 @@
 
     shell.fish = { enable = true; theme = "rose-pine"; };
 
-    applications.term.dev.git.enable = true;
-    applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
-    applications.term.utils.bat = { enable = true; theme = "rose-pine"; };
-
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
@@ -33,6 +29,11 @@
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
+
+    applications.term.dev.git.enable = true;
+    applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
+    applications.term.utils.bat = { enable = true; theme = "rose-pine"; };
+    applications.term.utils.zathura = { enable = true; theme = "rose-pine"; };
 
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
@@ -54,6 +55,7 @@
     applications.misc.xdragon.enable = true;
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
+
   };
 
   programs.home-manager.enable = true;
