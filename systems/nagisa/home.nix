@@ -20,6 +20,7 @@
 
     applications.term.dev.git.enable = true;
     applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
+    applications.term.utils.bat = { enable = true; theme = "rose-pine"; };
 
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;

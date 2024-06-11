@@ -37,7 +37,7 @@
       });
 
       settings = {
-        color_theme = "${cfg.theme}";
+        color_theme = "${if cfg.theme != null then cfg.theme else ""}";
 	vim_keys = true;
 	proc_tree = true;
 	proc_sorting = "pid";
@@ -46,8 +46,8 @@
     
     };
 
-    home.file = {
-      selectedTheme = {
+    home.file = lib.mkIf ( cfg.theme != null ) {
+      btopTheme = {
         target = ".config/btop/themes/${cfg.theme}.theme";
 	source = ./themes/${cfg.theme}.theme; 
       };

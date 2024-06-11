@@ -5,5 +5,6 @@ let
 in {
   imports = [
     ./btop/btop.nix
+    ./bat/bat.nix
   ];
 }
