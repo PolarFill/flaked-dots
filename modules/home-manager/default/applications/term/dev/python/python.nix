@@ -1,9 +1,9 @@
 { inputs, pkgs, lib, config, ... }:
 
   let
-    cfg = config.homeModules.default.dev.python;
+    cfg = config.homeModules.default.applications.term.dev.python;
   in {
-    options.homeModules.default.dev.python = {
+    options.homeModules.default.applications.term.dev.python = {
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;

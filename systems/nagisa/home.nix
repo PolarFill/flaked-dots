@@ -16,8 +16,11 @@
 
     scripts = { enable = true; all = true; };
 
-
     shell.fish = { enable = true; theme = "rose-pine"; };
+
+    applications.term.dev.git.enable = true;
+    applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
+
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
@@ -30,10 +33,9 @@
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
 
-    shell.dev.git = { enable = true; };
-
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
+    applications.flatpaks.bottles.enable = true;
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; };
     

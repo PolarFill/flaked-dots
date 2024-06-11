@@ -1,9 +1,9 @@
  {inputs, pkgs, lib, config, ... }:
 
   let
-    cfg = config.homeModules.default.shell.dev.git;
+    cfg = config.homeModules.default.applications.term.dev.git;
   in {
-    options.homeModules.default.shell.dev.git = {
+    options.homeModules.default.applications.term.dev.git = {
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;

@@ -7,7 +7,6 @@ in {
     ./fish/fish.nix
     ./shell-utils.nix
     ./shellFun.nix
-    ./dev
   ];
 }
 

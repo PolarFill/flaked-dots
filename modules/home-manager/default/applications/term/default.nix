@@ -5,5 +5,7 @@ let
 in {
   imports = [
     ./alacritty/alacritty.nix
+    ./utils
+    ./dev
   ];
 }
