@@ -17,11 +17,16 @@
 	description = "Sets alacritty theme";
       };
 
+      withSixel = lib.options.mkOption {
+        default = false;
+	type = lib.types.bool;
+	description = "If true, ayosec's fork with sixel support will be used";
+      };
+
     };
 
   config = lib.mkIf cfg.enable {   
     home.packages = with pkgs; [ 
-      alacritty
       tmux
       cozette
     ];
@@ -39,6 +44,21 @@
         font.bold_italic = { family = "cozette"; style = "Bold Italic"; };
 
       };
+      package =
+        if cfg.withSixel == false
+	then pkgs.alacritty
+	else pkgs.alacritty.overrideAttrs (oldAttrs: rec {
+          src = pkgs.fetchFromGitHub {
+            owner = "ayosec";
+            repo = "alacritty";
+            rev = "e0d84e48e1a9705219a1a3074e087d3f015c4144";
+            hash = "sha256-yajypRvpdy6Tjm5pBaEjOq0ykulEZtujklTzYrBoIFQ=";
+          };
+	  cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
+            inherit src;
+	    outputHash = "sha256-F9NiVbTIVOWUXnHtIUvxlZ5zvGtgz/AAyAhyS4w9f9I=";
+	  });
+	});
     };
 
     programs.tmux = {

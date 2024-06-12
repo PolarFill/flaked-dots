@@ -39,7 +39,7 @@
     applications.flatpaks.steam.enable = true;
     applications.flatpaks.bottles.enable = true;
 
-    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; };
+    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     
     applications.web.firefox.enable = true;
     

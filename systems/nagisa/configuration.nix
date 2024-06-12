@@ -17,17 +17,12 @@
   }; 
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
+#    overlays = [
+#      outputs.overlays.additions
+#      outputs.overlays.modifications
+#    ];
     config = { 
       allowUnfree = true;
-#      packageOverrides = pkgs: { 
-#        nur = import (builtins.fetchTarball {
-#          url = "https://github.com/nix-community/NUR/archive/90060445d9ee7b731c147b2caa53dc45d557bce9.tar.gz";
-#	  sha256 = "0klk4f227hgsjga7qkqcs2di8y9j6b2r62w605vlgqk1fc7v3x8k";
-#	}) { inherit pkgs; }; };
     };
   };
 

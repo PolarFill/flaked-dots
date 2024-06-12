@@ -29,26 +29,27 @@
           url = "github:hyprwm/contrib";
           inputs.nixpkgs.follows = "nixpkgs";
         };     
-#	hyprlang = {
-#          url = "github:hyprwm/hyprlang";
-	  # inputs.nixpkgs.follows = "hyprland";
-#	};
-	hyprland-plugins = {
+
+        hyprland-plugins = {
           url = "github:hyprwm/hyprland-plugins";
 	  inputs.hyprland.follows = "hyprland";
 	};
+
 #	hyprfocus = {
 #          Broken
 #          url = "github:pyt0xic/hyprfocus";
 #          inputs.hyprland.follows = "hyprland";
 #	};
+
 	hyprland-virtual-desktops = {
           url = "github:levnikmyskin/hyprland-virtual-desktops";
 	  inputs.nixpkgs.follows = "hyprland";
 	};
+
         hyprland-portal = {
           url = "github:hyprwm/xdg-desktop-portal-hyprland";
 	};
+
 };
 
     outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, nix-flatpak, ... } @ inputs:
@@ -63,10 +64,10 @@
 
     in {
    
-      customPkgs = withAllSystems ( system: import ./overlays/pkgs nixpkgs.legacyPackages.${system} ); # Access custom pkgs (if any)
-      formatter = withAllSystems ( system: nixpkgs.legacyPackages.${system}.alejandra );      # Not using currently, keeping it just in case
-
-      overlays = import ./overlays { inherit inputs; };
+      pkgs = withAllSystems ( system: import ./custom/pkgs nixpkgs.legacyPackages.${system} ); # Access custom pkgs (if any)
+      overlays = import ./custom/overlays { inherit inputs; };
+      formatter = withAllSystems ( system: nixpkgs.legacyPackages.${system}.alejandra );       # Not using currently, keeping it just in case
+      
       homeModules.default = "${self}/modules/home-manager/default";
       nixosModules.default = "${self}/modules/nixos/default";
 
