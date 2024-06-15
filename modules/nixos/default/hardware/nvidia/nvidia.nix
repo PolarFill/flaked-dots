@@ -1,3 +1,7 @@
+# withUnlocks option requires you to insert "inputs.nvidia-patch.overlays.default" in nixpkgs.overlays
+# read https://github.com/icewind1991/nvidia-patch-nixos for more info :D
+# off by default for easier reproduction (no need to insert overlay by default)
+
 { config, lib, pkgs, ... }:
 
 let
@@ -9,6 +13,12 @@ in {
       default = false;
       type = lib.types.bool;
       description = "Enables nvidia drivers and kernel support";
+    };
+
+    withUnlocks = lib.options.mkOption {
+      default = false;
+      type = lib.types.bool;
+      description = "Enables NVENC and NVFBC patching";
     };
 
   };
@@ -38,7 +48,10 @@ in {
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = 
+        if cfg.withUnlocks == true
+	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.beta)
+	else config.boot.kernelPackages.nvidiaPackages.beta; 
     };
   };
 }

@@ -18,6 +18,9 @@
           url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 	  inputs.nixpkgs.follows = "nixpkgs";
 	};
+ 
+        nvidia-patch.url = "github:icewind1991/nvidia-patch-nixos";  
+        nvidia-patch.inputs.nixpkgs.follows = "nixpkgs";
 
 	sops-nix.url = "github:Mic92/sops-nix";
 

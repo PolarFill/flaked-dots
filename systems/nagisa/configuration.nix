@@ -9,7 +9,7 @@
 
   nixosModules.default = {
     
-    hardware.nvidia.proprietary.enable = true;
+    hardware.nvidia.proprietary = { enable = true; withUnlocks = true; };
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     os.pipewire.enable = true;
     os.fonts.enable = true;
@@ -17,10 +17,11 @@
   }; 
 
   nixpkgs = {
-#    overlays = [
+    overlays = [
+      inputs.nvidia-patch.overlays.default
 #      outputs.overlays.additions
 #      outputs.overlays.modifications
-#    ];
+    ];
     config = { 
       allowUnfree = true;
     };
@@ -100,6 +101,17 @@
      doas
      git
   ];
+
+    services.avahi = {
+      enable = lib.mkDefault true;
+      publish = {
+        enable = lib.mkDefault true;
+        userServices = lib.mkDefault true;
+      };
+    };
+
+   networking.firewall.enable = false;
+   networking.firewall.allowedTCPPorts = [ "80" "443" "47989" ];
 
   system.stateVersion = "23.11";
 }

@@ -55,6 +55,7 @@
     applications.misc.xdragon.enable = true;
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
+    applications.misc.sunshine.enable = true;
 
   };
 

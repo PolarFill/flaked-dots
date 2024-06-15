@@ -7,6 +7,7 @@ in {
     ./xdragon.nix
     ./mangohud.nix
     ./libreoffice.nix
+    ./sunshine.nix
   ];
 }
 
