@@ -6,6 +6,7 @@ in {
 
   imports = [
     ./kernel.nix
+    ./localization.nix
   ];
 
 }

@@ -7,6 +7,7 @@ in {
   imports = [
     ./nvidia
     ./storageDrives.nix
+    ./microcode.nix
   ];
 
 }

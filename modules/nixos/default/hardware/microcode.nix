@@ -5,9 +5,9 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.nixosModules.default.hardware.cpuMicrocode;
+  cfg = config.nixosModules.default.hardware.microcode;
 in {
-  options.nixosModules.default.hardware.cpuMicrocode = {
+  options.nixosModules.default.hardware.microcode = {
 
     enable = lib.options.mkEnableOption {
       default = false;
@@ -25,14 +25,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-
-    if cfg.cpu == "intel"
-    then hardware.cpu.intel.updateMicrocode = true
-    else {
-      if cfg.cpu == "amd"
-      then hardware.cpu.amd.updateMicrocode = true
-      else builtins.trace "No cpu was selected for hardware.cpuMicrocode!" hardware.cpu.amd.updateMicrocode = false;
-    };
+    
+    hardware.cpu.intel.updateMicrocode = lib.mkIf ( cfg.cpu == "intel" ) true;
+    hardware.cpu.amd.updateMicrocode = lib.mkIf ( cfg.cpu == "amd" ) true;
 
   };
 }

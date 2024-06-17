@@ -11,8 +11,15 @@
     
     hardware.nvidia.proprietary = { enable = true; withUnlocks = true; };
     hardware.storageDrives = { enable = true; userUid = "1000"; };
+    hardware.microcode = { enable = true; cpu = "amd"; };
+
     os.pipewire.enable = true;
     os.fonts.enable = true;
+    
+    system.localization = { enable = true; extraLocale = "pt_BR"; };
+    
+    applications.management.doas = { enable = true; users = [ "skynet" ]; };
+    applications.misc.sunshine.enable = true;
 
   }; 
 
@@ -47,46 +54,13 @@
     extraPortals = [ inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
   };
 
-#  services.flatpak = {
-#    enable = true;
-#    remotes = [ { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; } ];
-#    packages = [ { appId = "com.valvesoftware.Steam"; origin = "flathub-beta"; } ]
-#  };
-
   services.flatpak.enable = true;
 
-  security.sudo.enable = false;
-  security.doas.enable = true;
-  security.doas.extraRules = [{
-      users = ["skynet"];
-      keepEnv = true;
-      persist = true;
-  }];
-  
-#  security.rtkit.enable = true;
-  
   networking.networkmanager.enable = true;
   networking.hostName = "nagisa";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
-
-  time.timeZone = "America/Sao_Paulo";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_BR.UTF-8";
-    LC_IDENTIFICATION = "pt_BR.UTF-8";
-    LC_MEASUREMENT = "pt_BR.UTF-8";
-    LC_MONETARY = "pt_BR.UTF-8";
-    LC_NAME = "pt_BR.UTF-8";
-    LC_NUMERIC = "pt_BR.UTF-8";
-    LC_PAPER = "pt_BR.UTF-8";
-    LC_TELEPHONE = "pt_BR.UTF-8";
-    LC_TIME = "pt_BR.UTF-8";
-  };
-
-  console.keyMap = "br-abnt2";
 
   users.users.skynet = {
     isNormalUser = true;
@@ -102,16 +76,7 @@
      git
   ];
 
-    services.avahi = {
-      enable = lib.mkDefault true;
-      publish = {
-        enable = lib.mkDefault true;
-        userServices = lib.mkDefault true;
-      };
-    };
-
-   networking.firewall.enable = false;
-   networking.firewall.allowedTCPPorts = [ "80" "443" "47989" ];
+  networking.firewall.enable = false;
 
   system.stateVersion = "23.11";
 }

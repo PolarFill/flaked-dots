@@ -6,5 +6,7 @@ in {
 
   imports = [
     ./steam.nix
+    ./misc
+    ./management
   ];
 }

@@ -7,5 +7,6 @@ in {
     ./hardware
     ./os
     ./applications
+    ./system
   ];
 }
