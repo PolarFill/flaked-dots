@@ -176,7 +176,20 @@
 		    { name = "NixPkgs issue tracker"; url = "https://nixpk.gs/"; }
 		    { name = "NixPkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
 		    { name = "NixPkgs update track"; url = "https://status.nixos.org"; }
-		    ]; }
+		  ];}
+		  { name = "Nix contributions"; bookmarks = [
+                    { name = "How to contribute"; url = "https://nix.dev/contributing/how-to-contribute.html"; }
+		    { name = "Nixpkgs contribution guide"; url = "https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md"; }
+		    { name = "Latest nixos-unstable release"; url = "https://channels.nixos.org/nixpkgs-unstable/git-revision"; }
+		    { name = "Nixpkgs manual"; url = "https://nixos.org/manual/nixpkgs/stable/"; }
+		  ];}
+		];
+	      }
+	      {
+                name = "Blogs";
+		toolbar = true;
+		bookmarks = [
+                  { name = "ayats"; url = "https://ayats.org/"; }
 		];
 	      }
 	    ];

@@ -155,6 +155,22 @@
 	ImageLink.enabled = true;
 	ImplicitRelationships.enabled = true;
 	MessageLatency.enabled = true;
+	BetterFolders.enabled = true;
+	AutomodContext.enabled = true;
+	BetterNotesBox = { enabled = true; hide = true; };
+	Decor.enabled = true;
+	NoOnboardingDelay.enabled = true;
+	OpenInApp.enabled = true;
+	ReverseImageSearch.enabled = true;
+	ShowAllMessageButtons.enabled = true;
+	ShowTimeoutDuration.enabled = true;
+	SortFriendRequests.enabled = true;
+	Summaries.enabled = true;
+	SuperReactionTweaks.enabled = true;
+	Translate.enabled = true;
+	TimeBarAllActivities.enabled = true;
+	ValidReply.enabled = true;
+	WatchTogetherAdblock.enabled = true;
         };
 
       useQuickCss = true;
