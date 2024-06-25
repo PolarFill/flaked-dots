@@ -78,5 +78,20 @@
 
   networking.firewall.enable = false;
 
+  hardware.nvidia-container-toolkit.enable = true;
+  
+  virtualisation = {
+    lxd.enable = true;
+    podman = {
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
+      dockerCompat = true;
+      dockerSocket.enable = true;
+      enable = true;
+    };
+    spiceUSBRedirection.enable = true;
+  };
+
   system.stateVersion = "23.11";
 }

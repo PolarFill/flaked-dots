@@ -28,7 +28,9 @@
 
     system.graphics.gtk.enable = true;              
     system.ui.mako = { enable = true; theme = "rose-pine"; };
-    system.xdg.portals = { enable = true; defaultPortal = "wlr"; };
+    system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
+
+    virtualization.distrobox = { enable = true; containers = ["arch-aur"]; nvidia = true; };
 
     applications.term.dev.git.enable = true;
     applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
@@ -55,7 +57,6 @@
     applications.misc.xdragon.enable = true;
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
-#    applications.misc.sunshine.enable = true;
 
   };
 
