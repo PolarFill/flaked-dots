@@ -74,12 +74,23 @@
      neovim 
      doas
      git
+     devenv
   ];
 
   networking.firewall.enable = false;
 
   hardware.nvidia-container-toolkit.enable = true;
-  
+
+  boot.kernelParams = [
+    "video=efifb:off"
+    "amd_iommu=on"
+    "iommu=pt"
+  ];
+
+  nix.settings = {
+    trusted-users = [ "root" "skynet" ];
+  };
+
   virtualisation = {
     lxd.enable = true;
     podman = {
