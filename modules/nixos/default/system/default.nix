@@ -8,6 +8,7 @@ in {
     ./kernel.nix
     ./localization.nix
     ./security
+    ./manual-virt.nix
   ];
 
 }

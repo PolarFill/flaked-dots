@@ -26,6 +26,9 @@
 
         nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
+        nixvirt.url = "github:AshleyYakeley/NixVirt";
+	nixvirt.inputs.nixpkgs.follows = "nixpkgs";
+
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 	
 	hyprland-contrib = {
@@ -55,7 +58,7 @@
 
 };
 
-    outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, nix-flatpak, ... } @ inputs:
+    outputs = { self, nixpkgs, home-manager, chaotic-cx, nur, nix-flatpak, nixvirt, ... } @ inputs:
 
     let
 
@@ -84,6 +87,7 @@
                 nur.nixosModules.nur
 		chaotic-cx.nixosModules.default
 		nix-flatpak.nixosModules.nix-flatpak
+		nixvirt.nixosModules.default
 		home-manager.nixosModules.home-manager {
                   home-manager = {
                       useGlobalPkgs = true;

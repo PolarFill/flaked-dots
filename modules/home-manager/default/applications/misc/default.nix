@@ -8,6 +8,7 @@ in {
     ./mangohud.nix
     ./libreoffice.nix
     ./sunshine.nix
+    ./kdenlive.nix
   ];
 }
 

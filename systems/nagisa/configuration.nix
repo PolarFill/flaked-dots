@@ -17,6 +17,7 @@
     os.fonts.enable = true;
     
     system.localization = { enable = true; extraLocale = "pt_BR"; };
+    system.manual-virt.enable = false;
     
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
@@ -50,8 +51,17 @@
 
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
-    extraPortals = [ inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
+    config = {
+      common = {
+        default = [ "*" ];
+	"org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      };
+    };
+    extraPortals = [ 
+      #inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+#      inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland 
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   services.flatpak.enable = true;
@@ -66,7 +76,7 @@
     isNormalUser = true;
     initialPassword = "123456";
     description = "Main user";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" "libvirt" ];
     packages = with pkgs; [];
   };
 
