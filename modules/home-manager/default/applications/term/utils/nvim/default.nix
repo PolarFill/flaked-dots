@@ -4,9 +4,7 @@ let
   cfg = config.modules.applications.term.utils;
 in {
   imports = [
-    ./btop/btop.nix
-    ./bat/bat.nix
-    ./zathura/zathura.nix
-    ./nvim
+    ./nvim.nix
+    ./nixvim/plugins/barbar.nix
   ];
 }

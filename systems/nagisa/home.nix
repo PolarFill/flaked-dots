@@ -1,4 +1,4 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ inputs, outputs,  ... }:
 
 {
   
@@ -8,6 +8,7 @@
     inputs.nur.hmModules.nur
     inputs.sops-nix.homeManagerModule
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.nixvim.homeManagerModules.nixvim
 
     ./secrets/sops-nix.nix
   ];
@@ -36,6 +37,7 @@
     applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
     applications.term.utils.bat = { enable = true; theme = "rose-pine"; };
     applications.term.utils.zathura = { enable = true; theme = "rose-pine"; };
+    applications.term.utils.nvim = { enable = true; theme = "rose-pine"; };
 
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
