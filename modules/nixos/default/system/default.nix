@@ -9,6 +9,7 @@ in {
     ./localization.nix
     ./security
     ./manual-virt.nix
+    ./ssh/ssh.nix
   ];
 
 }

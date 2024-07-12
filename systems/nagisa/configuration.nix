@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, outputs, lib, ... }:
+{ pkgs, inputs, outputs, lib, ... }:
 
 {
   imports = [
     outputs.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+
+    ./secrets/sops-nix-sys.nix
   ];
 
   home-manager.backupFileExtension = "backup";
@@ -18,7 +21,8 @@
     
     system.localization = { enable = true; extraLocale = "pt_BR"; };
     system.manual-virt.enable = false;
-    
+    system.ssh = { enable = true; secrets = true; };
+
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
 

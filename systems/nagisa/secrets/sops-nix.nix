@@ -18,9 +18,6 @@
 
       "conf_template" = { sopsFile = ./age_secrets/lastfm_secrets.yaml; };
 
-      #"skynet/password" = {
-      #  neededForUsers = true;
-      #};
     };
   };
 }
