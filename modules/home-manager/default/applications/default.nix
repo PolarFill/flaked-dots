@@ -11,5 +11,6 @@ in {
     ./rice
     ./music
     ./flatpaks
+    ./gaming
   ];
 }
