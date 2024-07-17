@@ -46,6 +46,7 @@
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     
     applications.web.firefox.enable = true;
+    applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
 

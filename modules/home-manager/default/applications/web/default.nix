@@ -5,5 +5,6 @@ let
 in {
   imports = [
     ./firefox/firefox.nix
+    ./qbittorrent/qbittorrent.nix
   ];
 }
