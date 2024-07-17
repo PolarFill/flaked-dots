@@ -1,12 +1,13 @@
 { lib, config, ... }:
-
+{
+/*
 let
   mods_path = ".local/share/PrismLauncher/instances/fabric-client-1.21/.minecraft/mods";
   config_path = ".local/share/PrismLauncher/instances/fabric-client-1.21/.minecraft/config";
 in {
   config = { 
-
-    home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true"; 
+*/
+    home.file.".local/share/PrismLauncher/instances/fabric-client-1.21/.minecraft/config/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true"; 
 /*
     ( 
       lib.fetchzip { 
@@ -17,5 +18,5 @@ in {
       }
     )
 */
-  };
+#  };
 }
