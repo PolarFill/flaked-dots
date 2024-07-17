@@ -56,11 +56,12 @@
     applications.music.nicotine.enable = true;
     applications.music.mpd = { enable = true; scrobbler_type = "mpdscribble"; };
 
-    applications.gaming.minecraft.prismlauncher.enable = true;    
+    applications.gaming.minecraft.prismlauncher = { enable = true; instances = [ "fabric-client-1.21" ]; };
     
     applications.misc.xdragon.enable = true;
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
+    applications.misc.kdenlive.enable = true;
 
   };
 
