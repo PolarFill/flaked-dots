@@ -63,6 +63,7 @@
     applications.misc.mangohud.enable = true;
     applications.misc.libreoffice.enable = true;
     applications.misc.kdenlive.enable = true;
+    applications.misc.keepassxc.enable = true;
 
   };
 
