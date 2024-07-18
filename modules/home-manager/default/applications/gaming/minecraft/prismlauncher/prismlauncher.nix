@@ -56,8 +56,9 @@
     }
 
     ( lib.mkIf ( builtins.elem "fabric-client-1.21" cfg.instances ) {
-        home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true";
 	home.file."${instance_path}/mmc-pack".source = ./instances/fabric-client-1_21/mmc-pack.json;
+        home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true";
+	#home.file."${config_path}/ryoamiclights.toml".text = lib.generators.toTOML 
     })
 
   ]);
