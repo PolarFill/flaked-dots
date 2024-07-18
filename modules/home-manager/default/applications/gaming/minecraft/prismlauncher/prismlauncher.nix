@@ -2,6 +2,8 @@
 
   let
     cfg = config.homeModules.default.applications.gaming.minecraft.prismlauncher;
+    config_path = ".local/share/PrismLauncher/instances/fabric-client-1.21/.minecraft/config";
+    instance_path = ".local/share/PrismLauncher/instances/fabric-client-1.21/.minecraft/config";
   in {
     options.homeModules.default.applications.gaming.minecraft.prismlauncher = {
 
@@ -53,7 +55,10 @@
       };
     }
 
-   # ( config.lib.mkIf ( builtins.elem "fabric-client-1.21" cfg.instances ) import ./instances/fabric-client-121 )
+    ( lib.mkIf ( builtins.elem "fabric-client-1.21" cfg.instances ) {
+        home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true";
+	home.file."${instance_path}/mmc-pack".source = ./instances/fabric-client-1_21/mmc-pack.json;
+    })
 
   ]);
 
