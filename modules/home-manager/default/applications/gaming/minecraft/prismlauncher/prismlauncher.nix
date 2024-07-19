@@ -56,9 +56,48 @@
     }
 
     ( lib.mkIf ( builtins.elem "fabric-client-1.21" cfg.instances ) {
+	
 	home.file."${instance_path}/mmc-pack".source = ./instances/fabric-client-1_21/mmc-pack.json;
-        home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true";
-	#home.file."${config_path}/ryoamiclights.toml".text = lib.generators.toTOML 
+        
+	home.file."${config_path}/modernfix-mixins.properties".text = "mixin.perf.dynamic_resources=true";
+	
+	home.file."${config_path}/hm/replaymod.json" = {
+	  text = builtins.toJSON {
+	    recording = { 
+	      indicator = false; 
+	    };
+	  };
+	  onChange = '' 
+	    rm -f ${config_path}/replaymod.json 
+	    cp ${config_path}/hm/replaymod.json ${config_path}/replaymod.json
+	    chmod u+w ${config_path}/replaymod.json
+	  '';
+	};
+
+	home.file."${config_path}/hm/ryoamiclights.toml" = { 
+	  text = ''
+	    [light_sources]
+	      tnt = "fancy"
+	      creeper = "fancy"
+	  '';
+	  onChange = '' 
+	    rm -f ${config_path}/ryoamiclights.toml
+	    cp ${config_path}/hm/ryoamiclights.toml ${config_path}/ryoamiclights.toml
+	    chmod u+w ${config_path}/ryoamiclights.toml
+	  '';
+	};
+
+	home.file."${config_path}/hm/astrocraft.json" = {
+	  text = builtins.toJSON {
+	    showConstellations = true;
+	  };
+	  onChange = '' 
+	    rm -f ${config_path}/astrocraft.json
+	    cp ${config_path}/hm/astrocraft.json ${config_path}/astrocraft.json
+	    chmod u+w ${config_path}/astrocraft.json
+	  '';
+	};
+
     })
 
   ]);

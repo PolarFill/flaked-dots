@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
   let
-    cfg = config.nixosModules.default.system.ssh;
+    cfg = config.nixosModules.default.system.network.ssh;
   in {
 
-    options.nixosModules.default.system.ssh = {
+    options.nixosModules.default.system.network.ssh = {
       enable = lib.options.mkEnableOption {
 	default = false;
 	type = lib.types.bool;

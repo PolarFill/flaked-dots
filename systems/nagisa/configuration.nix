@@ -19,10 +19,11 @@
     os.pipewire.enable = true;
     os.fonts.enable = true;
     
+    system.network.ssh = { enable = true; secrets = true; };
+    system.network.wireless.enable = true;
     system.localization = { enable = true; extraLocale = "pt_BR"; };
-    system.ssh = { enable = true; secrets = true; };
     system.kernel = { enable = true; kernel = "latest-libre"; };
-    system.manual-virt.enable = false;
+    system.manual-virt.enable = true;
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;

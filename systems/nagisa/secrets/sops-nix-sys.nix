@@ -9,7 +9,9 @@
     age.keyFile = "/var/lib/sops-nix/keys.txt";
   
     secrets = {
-      "ssh-keys/private" = { owner = "skynet"; };      
+      "ssh-keys/private" = { owner = "skynet"; };     
+      "wifi/wifi-keys" = { owner = "skynet"; };
+      "wifi/wifi-names" = { owner = "skynet"; };
     };
   };
 }

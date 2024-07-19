@@ -7,9 +7,9 @@ in {
   imports = [
     ./kernel.nix
     ./localization.nix
-    ./security
     ./manual-virt.nix
-    ./ssh/ssh.nix
+    ./security
+    ./network
   ];
 
 }
