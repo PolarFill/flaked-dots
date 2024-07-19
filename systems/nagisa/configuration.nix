@@ -20,8 +20,9 @@
     os.fonts.enable = true;
     
     system.localization = { enable = true; extraLocale = "pt_BR"; };
-    system.manual-virt.enable = false;
     system.ssh = { enable = true; secrets = true; };
+    system.kernel = { enable = true; kernel = "latest-libre"; };
+    system.manual-virt.enable = false;
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
