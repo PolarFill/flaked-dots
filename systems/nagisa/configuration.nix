@@ -21,9 +21,9 @@
     
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = true;
+    system.virtualisation.single-gpu.enable = true;
     system.localization = { enable = true; extraLocale = "pt_BR"; };
     system.kernel = { enable = true; kernel = "latest-libre"; };
-    system.manual-virt.enable = true;
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
@@ -72,7 +72,6 @@
 
   services.flatpak.enable = true;
 
-  networking.networkmanager.enable = true;
   networking.hostName = "nagisa";
 
   boot.loader.systemd-boot.enable = true;
@@ -83,7 +82,7 @@
     initialPassword = "123456";
     description = "Main user";
     extraGroups = [ "networkmanager" "wheel" "gamemode" "libvirt" ];
-    packages = with pkgs; [];
+    packages = [];
   };
 
   environment.systemPackages = with pkgs; [
