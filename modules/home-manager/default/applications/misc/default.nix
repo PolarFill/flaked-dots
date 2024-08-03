@@ -9,7 +9,7 @@ in {
     ./libreoffice.nix
     ./sunshine.nix
     ./kdenlive.nix
-    ./keepassxc.nix
+    ./keepassxc/keepassxc.nix
   ];
 }
 

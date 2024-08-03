@@ -39,6 +39,13 @@
       '';
     };
 
+    home.file = {
+      pt_wordlist = {
+	source = ./wordlists/diceware.wordlist.pt.txt;
+	target = ".config/keepassxc/wordlists/";
+      };
+    };
+
   };
 }
 
