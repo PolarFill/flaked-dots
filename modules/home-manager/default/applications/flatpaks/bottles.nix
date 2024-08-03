@@ -16,7 +16,7 @@
   config = lib.mkIf cfg.enable {   
     
     services.flatpak.packages = [
-      { appId = "com.usebottles.bottles"; origin = "flathub-beta"; }
+      { appId = "com.usebottles.bottles"; origin = "flathub"; }
     ];
 
   }; 
