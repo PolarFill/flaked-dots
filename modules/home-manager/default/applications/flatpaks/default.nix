@@ -7,5 +7,6 @@ in {
     ./flatpak.nix
     ./steam.nix
     ./bottles.nix
+    ./sober.nix
   ];
 }

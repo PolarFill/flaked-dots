@@ -12,7 +12,7 @@
 
   nixosModules.default = {
     
-    hardware.nvidia.proprietary = { enable = true; withUnlocks = true; };
+    hardware.nvidia.proprietary = { enable = true; withUnlocks = false; };
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     hardware.microcode = { enable = true; cpu = "amd"; };
 
