@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ lib, config, ... }:
 
   let
     cfg = config.homeModules.default.applications.flatpaks.flatpak;
@@ -14,21 +14,14 @@
     };
 
   config = lib.mkIf cfg.enable {   
-  
+
     services.flatpak = {
-      enable = true;
-      uninstallUnmanaged = true;
-      update.auto.enable = true;
-      remotes = [
-        { 
-	  name = "flathub-beta"; 
-	  location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-	}
-	{
-          name = "flathub";
-	  location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-	}
-      ];
+      enableModule = true;
+      deduplicate = true;
+      remotes = { 
+	flathub-beta = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+        flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      };
    };
   }; 
 }

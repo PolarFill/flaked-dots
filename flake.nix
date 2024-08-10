@@ -24,7 +24,7 @@
 
 	sops-nix.url = "github:Mic92/sops-nix";
 
-        nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+        nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
 
         nixvirt.url = "github:AshleyYakeley/NixVirt";
 	nixvirt.inputs.nixpkgs.follows = "nixpkgs";
@@ -91,7 +91,7 @@
 		"${nagisaSysPath}/hardware-configuration.nix"
                 nur.nixosModules.nur
 		chaotic-cx.nixosModules.default
-		nix-flatpak.nixosModules.nix-flatpak
+		nix-flatpak.nixosModules.default
 		nixvirt.nixosModules.default
 		home-manager.nixosModules.home-manager {
                   home-manager = {

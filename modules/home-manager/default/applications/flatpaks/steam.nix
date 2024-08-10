@@ -24,7 +24,9 @@
     ];
 
     services.flatpak.packages = [
-      { appId = "com.valvesoftware.Steam"; origin = "flathub-beta"; }
+      "flathub:app/com.valvesoftware.Steam//stable" 
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
     ];
 
     xdg.configFile."gamemode.ini".text = lib.generators.toINI {} {

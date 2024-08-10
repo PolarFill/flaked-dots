@@ -7,7 +7,7 @@
     inputs.arkenfox.hmModules.default
     inputs.nur.hmModules.nur
     inputs.sops-nix.homeManagerModule
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.nix-flatpak.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
 
     ./secrets/sops-nix.nix
@@ -42,6 +42,7 @@
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
     applications.flatpaks.bottles.enable = true;
+    applications.flatpaks.sober.enable = true;
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     
