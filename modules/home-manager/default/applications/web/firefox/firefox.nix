@@ -23,7 +23,7 @@
       enable = true;
       package = pkgs.firefox;
 
-      arkenfox = { enable = true; version = "122.0"; };
+      arkenfox = { enable = true; version = "126.1"; };
 
       policies = {
 	FirefoxHome = { Search = true; Pocket = false; Snippets = false; TopSites = false; Highlights = false; };
@@ -116,18 +116,30 @@
 	search.privateDefault = "DuckDuckGo";
 
 	extraConfig = ''
+          # Disables clipboard API, for websites that block copying / pasting
+	  user_pref("dom.event.clipboardevents.enabled", false);
+
 	  # Disables UI hiding on fullscreen
 	  user_pref("browser.fullscreen.autohide", false);
 	  # Enables userChrome, used for pretty rfp letterbox
 	  user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-          # Disables clipboard API, for websites that block copying / pasting
-	  user_pref("dom.event.clipboardevents.enabled", false);
 	  # Enables a search box in large dropdown menus
 	  user_pref("dom.forms.selectSearch", true);
+
 	  # Enables GPU sandboxing (enabled by default on windows)
 	  user_pref("security.sandbox.gpu.level", true);
 	  # Enables fission website isolation layer
 	  user_pref("fission.autostart", true);
+	  # Disable region updates
+	  user_pref("browser.region.network.url", "");
+	  user_pref("browser.region.update.enabled", false);
+	  # Disable extra telemetry
+	  user_pref("browser.search.serpEventTelemetry.enabled",false);
+	  # Disable privacy-preserving attribution
+	  user_pref("dom.private-attribution.submission.enabled", false);
+	  # Disable relay email feature
+	  user_pref("signon.firefoxRelay.feature", "disabled");
+
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)
@@ -209,7 +221,11 @@
 	  "0300" = { enable = true; };
 	  "0400" = { enable = true; };
 	  "0600" = { enable = true; };
-	  "0700" = { enable = true; };
+	  "0700" = { 
+	    enable = true; 
+	    "0710"."network.trr.mode" = 3;
+	    "0712"."network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
+	  };
 	  "0800" = { enable = true; "0820"."layout.css.visited_links_enabled".value = true; };
 	  "0900" = { enable = true; };
 	  "1000" = { 
