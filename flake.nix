@@ -81,6 +81,7 @@
       
       homeModules.default = "${self}/modules/home-manager/default";
       nixosModules.default = "${self}/modules/nixos/default";
+      nixosModules.nagisa = "${self}/modules/nixos/nagisa";
 
       nixosConfigurations = {
         

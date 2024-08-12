@@ -6,6 +6,7 @@ in {
 
   imports = [
     ./single-gpu.nix
+    ./virtualisation.nix
   ];
 
 }

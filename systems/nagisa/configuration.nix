@@ -3,6 +3,7 @@
 {
   imports = [
     outputs.nixosModules.default
+    outputs.nixosModules.nagisa
     inputs.sops-nix.nixosModules.sops
 
     ./secrets/sops-nix-sys.nix
@@ -22,57 +23,23 @@
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = true;
     system.virtualisation.single-gpu.enable = true;
+    system.virtualisation.virtualisation.enable = true;
     system.localization = { enable = true; extraLocale = "pt_BR"; };
     system.kernel = { enable = true; kernel = "latest-libre"; };
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
 
-  }; 
-
-  nixpkgs = {
-    overlays = [
-      inputs.nvidia-patch.overlays.default
-#      outputs.overlays.additions
-#      outputs.overlays.modifications
-    ];
-    config = { 
-      allowUnfree = true;
-    };
   };
 
-  # Add flake inputs as registrys for use on nix3 shell
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
- 
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    auto-optimise-store = true;
-    substituters = [
-        "https://hyprland.cachix.org"    
-    ];
-    trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
+  nixosModules.nagisa = {
+    
+    os.xdph.enable = true;
+    os.nix-config.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    config = {
-      common = {
-        default = [ "*" ];
-	"org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-      };
-    };
-    extraPortals = [ 
-      #inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-#      inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland 
-      pkgs.xdg-desktop-portal-gtk
-    ];
   };
 
   services.flatpak.enable = true;
-
-  networking.hostName = "nagisa";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
@@ -92,32 +59,8 @@
      devenv
   ];
 
+  networking.hostName = "nagisa";
   networking.firewall.enable = false;
-
-  hardware.nvidia-container-toolkit.enable = true;
-
-  boot.kernelParams = [
-    "video=efifb:off"
-    "amd_iommu=on"
-    "iommu=pt"
-  ];
-
-  nix.settings = {
-    trusted-users = [ "root" "skynet" ];
-  };
-
-  virtualisation = {
-    lxd.enable = true;
-    podman = {
-      defaultNetwork.settings = {
-        dns_enabled = true;
-      };
-      dockerCompat = true;
-      dockerSocket.enable = true;
-      enable = true;
-    };
-    spiceUSBRedirection.enable = true;
-  };
 
   system.stateVersion = "23.11";
 }

@@ -96,7 +96,7 @@
       # https://arkenfox.dwarfmaster.net/ and https://github.com/dwarfmaster/arkenfox-nixos
       # for how to config
 
-      profiles.Default = {
+      profiles.default = {
        
         extensions = with config.nur.repos.rycee.firefox-addons; [
 #          bypass-paywalls-clean
@@ -223,8 +223,8 @@
 	  "0600" = { enable = true; };
 	  "0700" = { 
 	    enable = true; 
-	    "0710"."network.trr.mode" = 3;
-	    "0712"."network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
+	    "0710"."network.trr.mode".value = 3;
+	    "0712"."network.trr.custom_uri".value = "https://dns.quad9.net/dns-query";
 	  };
 	  "0800" = { enable = true; "0820"."layout.css.visited_links_enabled".value = true; };
 	  "0900" = { enable = true; };
