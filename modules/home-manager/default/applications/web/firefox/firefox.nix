@@ -140,6 +140,10 @@
 	  # Disable relay email feature
 	  user_pref("signon.firefoxRelay.feature", "disabled");
 
+	  # Enable DoH (enabling it from arkenfox doesnt work for some reason)
+	  user_pref("network.trr.mode", 3);
+	  user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
+	  user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)
@@ -221,11 +225,7 @@
 	  "0300" = { enable = true; };
 	  "0400" = { enable = true; };
 	  "0600" = { enable = true; };
-	  "0700" = { 
-	    enable = true; 
-	    "0710"."network.trr.mode".value = 3;
-	    "0712"."network.trr.custom_uri".value = "https://dns.quad9.net/dns-query";
-	  };
+	  "0700" = { enable = true; };
 	  "0800" = { enable = true; "0820"."layout.css.visited_links_enabled".value = true; };
 	  "0900" = { enable = true; };
 	  "1000" = { 
