@@ -2,7 +2,7 @@
 
 # Keep in mind this config isn't compatible with the nvidia.nix one (nvidia.proprietary), and vice-versa.
 
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 let
   cfg = config.nixosModules.default.hardware.nvidia.nouveau;
@@ -20,20 +20,46 @@ in {
   config = lib.mkIf cfg.enable {
    # NVIDIA things lol
 
-    environment.systemPackages = [
-      pkgs.mesa
-    ];
-
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [ 
+	xorg.xf86videonv
+	xorg.xf86videonouveau      
+	vaapiVdpau 
+	vulkan-tools
+	vulkan-validation-layers
+      ]; 
+      package = pkgs.mesa.drivers;
+      /*
+      package = (pkgs.mesa.override {
+	galliumDrivers = [
+	  "nouveau"
+          "swrast"
+          "zink" 
+        ];
+	vulkanDrivers = [
+	  "swrast"
+          "nouveau"
+        ];
+      }).drivers;
+      */
     };
+
+   # chaotic.mesa-git = {
+   #   enable = true;
+   #  # extraPackages = [ pkgs.vaapiIntel pkgs.amdvlk ];
+   # };
 
     boot = {
-      kernelParams = [ "nouveau.config=NvGspRm=1" ];
+      kernelParams = [ "nouveau.config=NvGspRm=1" "nouveau.debug=info,VBIOS=info,gsp=debug" ];
+      blacklistedKernelModules = [ "nvidia" "nvidia_uvm" ];
+      kernelModules = [ "nouveau" ];
     };
 
-    services.xserver.videoDrivers = [ "nouveau" ];
+    hardware.nvidia.modesetting.enable = false;
+
+    services.xserver.videoDrivers = [ "modesetting" "nouveau" ];
 
   };
 }

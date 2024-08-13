@@ -4,11 +4,18 @@
     cfg = config.homeModules.default.system.graphics.hyprland;
   in {
     options.homeModules.default.system.graphics.hyprland = {
+
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;
         description = "Enables the hyprland wm!";
       };
+
+      nvidia_vars = lib.options.mkOption {
+	default = false;
+	description = "Activates nvidia-related envvars";
+      };
+
     };
 
   config = lib.mkIf cfg.enable {   
@@ -43,7 +50,7 @@
       hyprland_themes = { source = ./hypr/themes; target = ".config/hypr/themes"; recursive = true;  };
     };
 
-    home.sessionVariables = {
+    home.sessionVariables = lib.mkIf cfg.nvidia_vars {
       _JAVA_AWT_WM_NONREPARENTING = "1";
       _XCURSOR_SIZE = "24";
       LIBVA_DRIVER_NAME = "nvidia";

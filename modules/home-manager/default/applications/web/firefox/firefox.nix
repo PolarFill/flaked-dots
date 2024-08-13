@@ -15,7 +15,7 @@
 
       doh = lib.options.mkOption {
 	default = false;
-	type = lib.types.boolean;
+	#type = lib.types.boolean;
 	description = "Enables dns over https";
       };
 

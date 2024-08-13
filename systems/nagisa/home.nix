@@ -22,9 +22,9 @@
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
-    system.graphics.swayfx.enable = false;
+    system.graphics.swayfx.enable = true;
     
-    system.graphics.hyprland.enable = true;
+    system.graphics.hyprland = { enable = true; nvidia_vars = true; };
     system.graphics.hyprcursor.enable = true;
 
     system.graphics.gtk.enable = true;              
@@ -46,7 +46,7 @@
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     
-    applications.web.firefox.enable = true;
+    applications.web.firefox = { enable = true; doh = false; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
