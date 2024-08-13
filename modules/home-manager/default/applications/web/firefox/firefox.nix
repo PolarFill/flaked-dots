@@ -6,11 +6,19 @@
     cfg = config.homeModules.default.applications.web.firefox;
   in {
     options.homeModules.default.applications.web.firefox = {
+
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;
         description = "Enables the firefox browser! (developer edition)";
       };
+
+      doh = lib.options.mkOption {
+	default = false;
+	type = lib.types.boolean;
+	description = "Enables dns over https";
+      };
+
     };
 
   config = lib.mkIf cfg.enable {   
@@ -141,9 +149,9 @@
 	  user_pref("signon.firefoxRelay.feature", "disabled");
 
 	  # Enable DoH (enabling it from arkenfox doesnt work for some reason)
-	  user_pref("network.trr.mode", 3);
-	  user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
-	  user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
+	  ${if cfg.doh then "user_pref(\"network.trr.mode\", 3);" else ""}
+	  ${if cfg.doh then "user_pref(\"network.trr.uri\", \"https://dns.quad9.net/dns-query\");" else ""}
+	  ${if cfg.doh then "user_pref(\"network.trr.custom_uri\", \"https://dns.quad9.net/dns-query\");" else ""}
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)

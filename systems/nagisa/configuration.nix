@@ -17,11 +17,13 @@
     hardware.storageDrives = { enable = true; userUid = "1000"; };
     hardware.microcode = { enable = true; cpu = "amd"; };
 
+    os.network.lokinet.enable = false;
     os.pipewire.enable = true;
     os.fonts.enable = true;
-    
+
+    system.network.nameservers = { enable = true; protocol = "dnscrypt2"; servers = ["quad9" "opennic"]; };
     system.network.ssh = { enable = true; secrets = true; };
-    system.network.wireless.enable = true;
+    system.network.wireless.enable = false;
     system.virtualisation.single-gpu.enable = true;
     system.virtualisation.virtualisation.enable = true;
     system.localization = { enable = true; extraLocale = "pt_BR"; };

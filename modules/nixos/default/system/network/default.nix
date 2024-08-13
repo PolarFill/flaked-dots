@@ -7,6 +7,7 @@ in {
   imports = [
     ./ssh/ssh.nix
     ./wireless.nix
+    ./nameservers.nix
   ];
 
 }
