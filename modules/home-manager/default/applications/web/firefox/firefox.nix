@@ -19,20 +19,22 @@
 	description = "Enables dns over https";
       };
 
+      doh_mode = lib.options.mkOption {
+	default = null;
+	type = lib.types.nullOr lib.types.str;
+	description = "Sets the doh_mode (see https://wiki.mozilla.org/Trusted_Recursive_Resolver). No effect if doh is disabled";
+      };
+
     };
 
   config = lib.mkIf cfg.enable {   
-
-#    xdg.enable = true;
-#    xdg.cacheHome."mozilla".force = true;
-#    xdg.userDirs.".mozilla".force = true;
 
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
 
       arkenfox = { enable = true; version = "126.1"; };
-
+      
       policies = {
 	FirefoxHome = { Search = true; Pocket = false; Snippets = false; TopSites = false; Highlights = false; };
 	SearchEngines = { Remove = [ "Google" "Wikipedia (en)" "Bing" ]; };
@@ -124,6 +126,9 @@
 	search.privateDefault = "DuckDuckGo";
 
 	extraConfig = ''
+	  # Make extensions auto-enable themselves at first start :D
+	  user_pref("extensions.autoDisableScopes", 0);
+
           # Disables clipboard API, for websites that block copying / pasting
 	  user_pref("dom.event.clipboardevents.enabled", false);
 
@@ -149,7 +154,7 @@
 	  user_pref("signon.firefoxRelay.feature", "disabled");
 
 	  # Enable DoH (enabling it from arkenfox doesnt work for some reason)
-	  ${if cfg.doh then "user_pref(\"network.trr.mode\", 3);" else ""}
+	  ${if cfg.doh then "user_pref(\"network.trr.mode\", ${cfg.doh_mode});" else ""}
 	  ${if cfg.doh then "user_pref(\"network.trr.uri\", \"https://dns.quad9.net/dns-query\");" else ""}
 	  ${if cfg.doh then "user_pref(\"network.trr.custom_uri\", \"https://dns.quad9.net/dns-query\");" else ""}
 	  '';
@@ -166,6 +171,9 @@
           /* prevent bookmarks to hide on fullscreen (yeah, weird) */
           #navigator-toolbox[inFullscreen] #PersonalToolbar{
           visibility: visible !important; }
+
+	  /* Disable the "Import Bookmarks" button. */
+	  #import-button { display: none; }
 	'';
 
         # Prevents some random anoying white flash, as the comment says
@@ -177,60 +185,58 @@
 
         bookmarks = [
 	  { 
-	    name = "toolbar";
-	    toolbar = true;
+	    name = "NixOS";
 	    bookmarks = [
-	      {
-	        name = "NixOS";
-		bookmarks = [
-	          { name = "MyNixOS"; url = "https://mynixos.com"; }
-	          { name = "NUR Search"; url = "https://nur.nix-community.org/"; }
-	          { name = "Nixpkgs search"; url = "https://search.nixos.org/packages"; }
-	          { name = "Home-manager search"; url = "https://home-manager-options.extranix.com/"; }
-	          { name = "awesome-nix"; url = "https://github.com/nix-community/awesome-nix"; }
-		  { name = "nix.dev"; url = "https://nix.dev/"; }
-		  { name = "Nix official wiki"; url = "https://wiki.nixos.org/"; }
-		  { name = "Chaotic-nyx package list"; url = "https://www.nyx.chaotic.cx/#lists-of-options-and-packages"; }
-		  { name = "List of builtins and lib"; url = "https://teu5us.github.io/nix-lib.html"; }
-		  { name = "Noogle.dev"; url = "https://noogle.dev"; }
-		  { name = "FlakeHub"; url = "https://flakehub.com/flakes"; }
-		  { name = "NixOS Discourse"; url = "https://discourse.nixos.org"; }
-		  { name = "NixOS Types list"; url = "https://nlewo.github.io/nixos-manual-sphinx/development/option-types.xml.html"; }
-		  { name = "NixPkgs Track"; bookmarks = [
-		    { name = "NixPkgs issue tracker"; url = "https://nixpk.gs/"; }
-		    { name = "NixPkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
-		    { name = "NixPkgs update track"; url = "https://status.nixos.org"; }
-		  ];}
-		  { name = "Nix contributions"; bookmarks = [
-                    { name = "How to contribute"; url = "https://nix.dev/contributing/how-to-contribute.html"; }
-		    { name = "Nixpkgs contribution guide"; url = "https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md"; }
-		    { name = "Latest nixos-unstable release"; url = "https://channels.nixos.org/nixpkgs-unstable/git-revision"; }
-		    { name = "Nixpkgs manual"; url = "https://nixos.org/manual/nixpkgs/stable/"; }
-		  ];}
-		];
-	      }
-	      {
-                name = "Blogs";
-		toolbar = true;
-		bookmarks = [
-                  { name = "ayats"; url = "https://ayats.org/"; }
-		];
-	      }
+	      { name = "MyNixOS"; url = "https://mynixos.com"; }
+	      { name = "NUR Search"; url = "https://nur.nix-community.org/"; }
+	      { name = "Nixpkgs search"; url = "https://search.nixos.org/packages"; }
+	      { name = "Home-manager search"; url = "https://home-manager-options.extranix.com/"; }
+	      { name = "awesome-nix"; url = "https://github.com/nix-community/awesome-nix"; }
+	      { name = "nix.dev"; url = "https://nix.dev/"; }
+	      { name = "Nix official wiki"; url = "https://wiki.nixos.org/"; }
+	      { name = "Chaotic-nyx package list"; url = "https://www.nyx.chaotic.cx/#lists-of-options-and-packages"; }
+	      { name = "List of builtins and lib"; url = "https://teu5us.github.io/nix-lib.html"; }
+	      { name = "Noogle.dev"; url = "https://noogle.dev"; }
+	      { name = "FlakeHub"; url = "https://flakehub.com/flakes"; }
+	      { name = "NixOS Discourse"; url = "https://discourse.nixos.org"; }
+	      { name = "NixOS Types list"; url = "https://nlewo.github.io/nixos-manual-sphinx/development/option-types.xml.html"; }
+	      { name = "NixPkgs Track"; bookmarks = [
+		{ name = "NixPkgs issue tracker"; url = "https://nixpk.gs/"; }
+		{ name = "NixPkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
+		{ name = "NixPkgs update track"; url = "https://status.nixos.org"; }
+	      ];}
+	      { name = "Nix contributions"; bookmarks = [
+		{ name = "How to contribute"; url = "https://nix.dev/contributing/how-to-contribute.html"; }
+		{ name = "Nixpkgs contribution guide"; url = "https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md"; }
+		{ name = "Latest nixos-unstable release"; url = "https://channels.nixos.org/nixpkgs-unstable/git-revision"; }
+		{ name = "Nixpkgs manual"; url = "https://nixos.org/manual/nixpkgs/stable/"; }
+	      ];}
+	    ];
+	  }
+	  {
+            name = "Blogs";
+	    bookmarks = [
+	      { name = "ayats"; url = "https://ayats.org/"; }
+	      { name = "voidus misskey"; url = "https://social.voidus.dev/"; }
 	    ];
 	  }
 	];
 
 	arkenfox = {
-          enable = true;
+	  enable = true;
           "0000".enable = true;
 	  "0100" = { 
 	    enable = true; 
 	    "0102"."browser.startup.page".value = 3; 
             "0103"."browser.startup.homepage".value = "about:home";
 	    "0104"."browser.newtabpage.enabled".value = true;
-	    };
+	  };
 	  "0200" = { enable = true; };
-	  "0300" = { enable = true; };
+	  "0300" = { 
+	    enable = true; 
+	    # Crash report enabled cause it helps me debug stuff
+	    "0350"."breakpad.reportURL".value = "https://crash-stats.mozilla.org/report/index/"; 
+	  };
 	  "0400" = { enable = true; };
 	  "0600" = { enable = true; };
 	  "0700" = { enable = true; };

@@ -22,7 +22,7 @@
     shell.shellUtils.enable = true;
     shell.shellFun.enable = true;
  
-    system.graphics.swayfx.enable = true;
+    system.graphics.swayfx.enable = false;
     
     system.graphics.hyprland = { enable = true; nvidia_vars = true; };
     system.graphics.hyprcursor.enable = true;
