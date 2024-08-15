@@ -33,18 +33,18 @@
 
     virtualization.distrobox = { enable = true; containers = ["arch-aur"]; nvidia = true; };
 
+    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     applications.term.dev.git.enable = true;
     applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
     applications.term.utils.bat = { enable = true; theme = "rose-pine"; };
     applications.term.utils.zathura = { enable = true; theme = "rose-pine"; };
     applications.term.utils.nvim = { enable = true; theme = "rose-pine"; };
+    applications.term.utils.timg.enable = true;
 
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
     applications.flatpaks.bottles.enable = true;
     applications.flatpaks.sober.enable = true;
-
-    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     
     applications.web.firefox = { enable = true; doh = false; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
