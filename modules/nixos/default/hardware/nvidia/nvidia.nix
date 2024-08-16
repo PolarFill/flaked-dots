@@ -49,8 +49,8 @@ in {
       nvidiaSettings = true;
       package = 
         if cfg.withUnlocks == true
-	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.beta)
-	else config.boot.kernelPackages.nvidiaPackages.beta; 
+	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.latest)
+	else config.boot.kernelPackages.nvidiaPackages.latest; 
     };
   };
 }
