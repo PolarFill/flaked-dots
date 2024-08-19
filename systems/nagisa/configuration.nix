@@ -22,7 +22,7 @@
     os.pipewire.enable = true;
     os.fonts.enable = true;
 
-    system.network.nameservers = { enable = true; protocol = "dnscrypt2"; servers = ["quad9" "opennic"]; ignore_server_list = true; };
+    system.network.nameservers = { enable = true; protocols = [ "anonymous-dnscrypt2" ]; ignore_server_list = true; };
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = false;
     system.virtualisation.single-gpu.enable = true;
