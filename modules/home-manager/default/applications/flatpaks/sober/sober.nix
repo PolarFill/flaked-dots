@@ -15,24 +15,9 @@
 
   config = lib.mkIf cfg.enable {
     
-    systemd.user.services.sober-install = {
-
-      Unit = {
-        Description = "install sober flatpak";
-        After = [ "manage-user-flatpaks.service" ];
-      };
-
-      Install = {
-        WantedBy = [ "manage-user-flatpaks.service" ];
-      };
-
-      Service = {
-        Type = "oneshot";
-	Environment = "PATH=/run/current-system/sw/bin";
-	ExecStart = "${pkgs.bash}/bin/bash -c 'if ${pkgs.flatpak}/bin/flatpak info org.vinegarhq.Sober &> /dev/null; then :; else ${pkgs.flatpak}/bin/flatpak install --noninteractive --user https://sober.vinegarhq.org/sober.flatpakref; fi'";
-      };
-
-    };
+    services.flatpak.packages = [
+      ":${./sober.flatpakref}"
+    ];
 
     home.file.".var/app/org.vinegarhq.Sober/data/sober/exe/ClientSettings/hm_ClientAppSettings.json" = {
       text = builtins.toJSON {
