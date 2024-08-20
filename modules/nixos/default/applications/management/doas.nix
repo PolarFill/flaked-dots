@@ -21,6 +21,10 @@
 
   config = lib.mkIf cfg.enable {   
 
+    environment.systemPackages = [
+      pkgs.doas-sudo-shim
+    ];
+
     # We need to disable sudo first
     security.sudo.enable = false;
     
