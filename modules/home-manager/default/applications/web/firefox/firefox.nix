@@ -31,7 +31,7 @@
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox;
+      package = pkgs.firefox-beta;
 
       arkenfox = { enable = true; version = "126.1"; };
       
@@ -217,6 +217,12 @@
             name = "Blogs";
 	    bookmarks = [
 	      { name = "ayats"; url = "https://ayats.org/"; }
+	      { name = "fasterthanlii.me"; url = "https://fasterthanli.me/"; }
+	    ];
+	  }
+	  {
+	    name = "Social";
+	    bookmarks = [
 	      { name = "voidus misskey"; url = "https://social.voidus.dev/"; }
 	    ];
 	  }

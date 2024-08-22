@@ -44,7 +44,7 @@
     applications.flatpaks.flatpak.enable = true;
     applications.flatpaks.steam.enable = true;
     applications.flatpaks.bottles.enable = true;
-    applications.flatpaks.sober.enable = true;
+    applications.flatpaks.sober = { enable = true; fflags = "default"; };
     
     applications.web.firefox = { enable = true; doh = false; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
@@ -74,6 +74,14 @@
  
   home.username = "skynet";
   home.homeDirectory = "/home/skynet";
+
+  home.shellAliases = {
+    nixos-update-unl = "nixos-rebuild switch --flake .#nagisa --option eval-cache false --show-trace -v --use-remote-sudo";
+    nixos-test-unl = "nixos-rebuild test --flake .#nagisa --option eval-cache false --show-trace -v --use-remote-sudo";
+    nixos-test = "nixos-rebuild switch --flake .#nagisa --option eval-cache false --show-trace -v --max-jobs 1 --use-remote-sudo";
+    nixos-update = "nixos-rebuild switch --flake .#nagisa --option eval-cache false --show-trace -v --max-jobs 1 --use-remote-sudo";
+  };
+
   home.sessionVariables = {
 
       EDITOR = "nvim";
