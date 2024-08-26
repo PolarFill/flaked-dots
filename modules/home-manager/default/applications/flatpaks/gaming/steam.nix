@@ -5,9 +5,9 @@
 { inputs, pkgs, lib, config, ... }:
 
   let
-    cfg = config.homeModules.default.applications.flatpaks.steam;
+    cfg = config.homeModules.default.applications.flatpaks.gaming.steam;
   in {
-    options.homeModules.default.applications.flatpaks.steam = {
+    options.homeModules.default.applications.flatpaks.gaming.steam = {
 
       enable = lib.options.mkEnableOption {
         default = false;

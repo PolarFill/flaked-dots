@@ -36,12 +36,20 @@
 	description = "Which relays to use for anonymous connections";
       };
 
+      ipv6 = lib.options.mkOption {
+	default = false;
+	type = lib.types.bool;
+	description = "Enables ipv6 servers (might slow things down)";
+      };
+
+
+
     };
 
   config = lib.mkIf cfg.enable {
 
     networking = {
-      enableIPv6 = true;
+      enableIPv6 = cfg.ipv6;
       useDHCP = false;
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager = {

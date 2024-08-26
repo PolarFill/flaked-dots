@@ -42,9 +42,10 @@
     applications.term.utils.timg.enable = true;
 
     applications.flatpaks.flatpak.enable = true;
-    applications.flatpaks.steam.enable = true;
     applications.flatpaks.bottles.enable = true;
-    applications.flatpaks.sober = { enable = true; fflags = "default"; };
+    applications.flatpaks.gaming.steam.enable = true;
+    applications.flatpaks.gaming.mcpe-launcher.enable = true;
+    applications.flatpaks.gaming.sober = { enable = true; fflags = "default"; };
     
     applications.web.firefox = { enable = true; doh = false; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };

@@ -1,9 +1,9 @@
 { inputs, pkgs, lib, config, ... }:
 
   let
-    cfg = config.homeModules.default.applications.flatpaks.sober;
+    cfg = config.homeModules.default.applications.flatpaks.gaming.sober;
   in {
-    options.homeModules.default.applications.flatpaks.sober = {
+    options.homeModules.default.applications.flatpaks.gaming.sober = {
 
       enable = lib.options.mkEnableOption {
         default = false;

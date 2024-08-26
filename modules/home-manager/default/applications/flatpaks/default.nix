@@ -5,8 +5,7 @@ let
 in {
   imports = [
     ./flatpak.nix
-    ./steam.nix
     ./bottles.nix
-    ./sober/sober.nix
+    ./gaming
   ];
 }
