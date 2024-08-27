@@ -21,6 +21,12 @@ in {
       description = "Enables NVENC and NVFBC patching";
     };
 
+    branch = lib.options.mkOption {
+      default = "latest";
+      type = lib.types.str;
+      description = "Defines which nvidia gpu branch will be used";
+    };
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -49,8 +55,8 @@ in {
       nvidiaSettings = true;
       package = 
         if cfg.withUnlocks == true
-	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.latest)
-	else config.boot.kernelPackages.nvidiaPackages.latest; 
+	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.${cfg.branch})
+	else config.boot.kernelPackages.nvidiaPackages.${cfg.branch}; 
     };
   };
 }

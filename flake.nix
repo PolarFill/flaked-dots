@@ -24,7 +24,7 @@
 
 	sops-nix.url = "github:Mic92/sops-nix";
 
-        nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable";
+        nix-flatpak.url = "github:GermanBread/declarative-flatpak/stable-v3";
 
         nixvirt.url = "github:AshleyYakeley/NixVirt";
 	nixvirt.inputs.nixpkgs.follows = "nixpkgs";

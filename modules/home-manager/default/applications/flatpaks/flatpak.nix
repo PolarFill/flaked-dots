@@ -17,7 +17,6 @@
 
     services.flatpak = {
       enableModule = true;
-      deduplicate = true;
       remotes = { 
 	flathub-beta = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
         flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
