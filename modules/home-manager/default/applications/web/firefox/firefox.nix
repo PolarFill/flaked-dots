@@ -110,9 +110,8 @@
        
         extensions = with config.nur.repos.rycee.firefox-addons; [
 #          bypass-paywalls-clean
+	  indie-wiki-buddy
 	  ublock-origin
-	  fastforwardteam
-#	  istilldontcareaboutcookies
 	  violentmonkey
 	  darkreader
 	  sponsorblock
