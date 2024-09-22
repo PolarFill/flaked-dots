@@ -13,6 +13,7 @@
 
   config = lib.mkIf cfg.enable {
 
+    fonts.enableDefaultPackages = true;
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-lgc-plus
