@@ -32,6 +32,7 @@
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
+    applications.misc.ns-usbloader.enable = true;
 
   };
 

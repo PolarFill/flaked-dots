@@ -6,5 +6,6 @@ in {
 
   imports = [
     ./sunshine.nix
+    ./ns-usbloader.nix
   ];
 }
