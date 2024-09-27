@@ -65,5 +65,7 @@
   networking.hostName = "nagisa";
   networking.firewall.enable = false;
 
+  programs.nix-ld.enable = true;
+
   system.stateVersion = "23.11";
 }

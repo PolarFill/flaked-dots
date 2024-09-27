@@ -14,7 +14,7 @@
   config = lib.mkIf cfg.enable {   
 
     home.packages = with pkgs; [
-      libreoffice-qt
+      libreoffice-qt6-fresh
       hunspell
       hunspellDicts.pt_BR
     ];
