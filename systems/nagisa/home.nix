@@ -46,7 +46,8 @@
     applications.flatpaks.gaming.steam.enable = true;
     applications.flatpaks.gaming.mcpe-launcher.enable = true;
     applications.flatpaks.gaming.sober = { enable = true; fflags = "default"; };
-    
+    applications.flatpaks.utils.sysdvr.enable = true;
+
     applications.web.firefox = { enable = true; doh = false; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     

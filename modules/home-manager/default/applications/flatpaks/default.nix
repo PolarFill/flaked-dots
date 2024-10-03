@@ -7,5 +7,6 @@ in {
     ./flatpak.nix
     ./bottles.nix
     ./gaming
+    ./utils
   ];
 }
