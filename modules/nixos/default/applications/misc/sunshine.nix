@@ -42,6 +42,7 @@
     services.sunshine = {
       enable = true;
       openFirewall = true;
+      capSysAdmin = true;
       settings = {
         keyboard = "${lib.boolToString cfg.enableKeyboard}";
         mouse = "${lib.boolToString cfg.enableMouse}";
