@@ -19,6 +19,7 @@
     hardware.microcode = { enable = true; cpu = "amd"; };
 
     os.network.lokinet.enable = false;
+    os.network.tor = { enable = true; torRelay = { enable = true; nickname = "test"; contactInfo = "test"; }; };
     os.pipewire.enable = true;
     os.fonts.enable = true;
 

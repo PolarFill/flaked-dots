@@ -6,5 +6,6 @@ in {
 
   imports = [
     ./lokinet.nix
+    ./tor.nix
   ];
 }
