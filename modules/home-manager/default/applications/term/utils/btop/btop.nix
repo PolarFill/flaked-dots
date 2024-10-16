@@ -29,12 +29,12 @@
       
       enable = true;
       
-      package = pkgs.btop.overrideAttrs (oldAttrs: rec {
+      package = pkgs.btop; /*.overrideAttrs (oldAttrs: rec {
         rocmSupport = true;
         cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
           "-DBTOP_GPU=ON"
         ];
-      });
+      }); */
 
       settings = {
         color_theme = "${if cfg.theme != null then cfg.theme else ""}";

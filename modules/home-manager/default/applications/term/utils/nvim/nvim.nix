@@ -74,6 +74,7 @@
 
       plugins = {
 
+	web-devicons.enable = true;
 	treesitter.enable = true;
 
         which-key = {
@@ -102,7 +103,7 @@
 	  servers = {
             pyright = { enable = true; };
 	    nixd = { enable = true; };
-	    rust-analyzer = {
+	    rust_analyzer = {
 	      enable = true;
               installRustc = false;
 	      installCargo = false;

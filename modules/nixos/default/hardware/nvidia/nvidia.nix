@@ -52,7 +52,7 @@ in {
       powerManagement.enable = true;
       powerManagement.finegrained = false;
       open = true;
-      nvidiaSettings = true;
+      nvidiaSettings = false;
       package = 
         if cfg.withUnlocks == true
 	then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.${cfg.branch})

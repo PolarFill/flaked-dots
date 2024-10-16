@@ -33,7 +33,7 @@
       enable = true;
       package = pkgs.firefox-beta;
 
-      arkenfox = { enable = true; version = "126.1"; };
+      arkenfox = { enable = true; version = "128.0"; };
       
       policies = {
 	FirefoxHome = { Search = true; Pocket = false; Snippets = false; TopSites = false; Highlights = false; };
@@ -152,10 +152,24 @@
 	  # Disable relay email feature
 	  user_pref("signon.firefoxRelay.feature", "disabled");
 
+	  # Arkenfox v128 disables RFP in favor of FPP for crowd-hiding purposes
+	  # I still prefer rfp though. Using it doesn't have any dowsides
+	  # besides the usual website breakages :p
+	  # Also disables webgl and spoofs english, as v128 also disables those by default
+	  user_pref("privacy.resistFingerprinting", true);
+	  user_pref("privacy.resistFingerprinting.letterboxing", true);
+	  user_pref("webgl.disabled", true);
+	  user_pref("privacy.spoof_english", 2);
+
 	  # Enable DoH (enabling it from arkenfox doesnt work for some reason)
 	  ${if cfg.doh then "user_pref(\"network.trr.mode\", ${cfg.doh_mode});" else ""}
 	  ${if cfg.doh then "user_pref(\"network.trr.uri\", \"https://dns.quad9.net/dns-query\");" else ""}
 	  ${if cfg.doh then "user_pref(\"network.trr.custom_uri\", \"https://dns.quad9.net/dns-query\");" else ""}
+
+	  # Enables http pipelining (sending multiple http requests instead of one)
+	  user_pref("network.http.pipelining", true);
+	  user_pref("network.http.proxy.pipelining", true);
+	  user_pref("network.http.pipelining.maxrequests", 10);
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)
