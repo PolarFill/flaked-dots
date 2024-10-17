@@ -13,16 +13,24 @@
         description = "Enables the firefox browser! (developer edition)";
       };
 
-      doh = lib.options.mkOption {
-	default = false;
-	#type = lib.types.boolean;
-	description = "Enables dns over https";
+      doh = {
+	enable = lib.options.mkOption {
+	  default = false;
+	  description = "Enables dns over https";
+	};	
+	mode = lib.options.mkOption {
+	  default = null;
+	  type = lib.types.nullOr lib.types.str;
+	  description = "Sets the doh_mode (see https://wiki.mozilla.org/Trusted_Recursive_Resolver). No effect if doh is disabled";
+	};
       };
 
-      doh_mode = lib.options.mkOption {
-	default = null;
-	type = lib.types.nullOr lib.types.str;
-	description = "Sets the doh_mode (see https://wiki.mozilla.org/Trusted_Recursive_Resolver). No effect if doh is disabled";
+      proxies = {
+	i2p = {
+	  enable = lib.options.mkEnableOption { default = true; };
+	  host = lib.options.mkOption { default = "127.0.0.1"; type = lib.types.str; };
+	  port = lib.options.mkOption { default = "4444"; type = lib.types.str; };
+	};
       };
 
     };
@@ -42,6 +50,19 @@
 	DisablePocket = true;
 	DisableFirefoxStudies = true;
         "3rdparty".Extensions = {
+	  "foxyproxy@eric.h.jung" = {
+	    "mode" = "pattern";
+	    "data" = [ 
+	      {
+		"active" = cfg.proxies.i2p.enable;
+		"title" = "I2P HTTP Proxy";
+		"type" = "http";
+		"hostname" = cfg.proxies.i2p.host;
+		"port" = cfg.proxies.i2p.port;
+		"color" = "#e01b24";
+	      }
+	    ];
+	  };
           "uBlock0@raymondhill.net".adminSettings = {
             userSettings = rec { 
 	      uiTheme = "dark"; 
@@ -109,7 +130,7 @@
       profiles.default = {
        
         extensions = with config.nur.repos.rycee.firefox-addons; [
-#          bypass-paywalls-clean
+         # bypass-paywalls-clean
 	  indie-wiki-buddy
 	  ublock-origin
 	  violentmonkey
@@ -162,14 +183,19 @@
 	  user_pref("privacy.spoof_english", 2);
 
 	  # Enable DoH (enabling it from arkenfox doesnt work for some reason)
-	  ${if cfg.doh then "user_pref(\"network.trr.mode\", ${cfg.doh_mode});" else ""}
-	  ${if cfg.doh then "user_pref(\"network.trr.uri\", \"https://dns.quad9.net/dns-query\");" else ""}
-	  ${if cfg.doh then "user_pref(\"network.trr.custom_uri\", \"https://dns.quad9.net/dns-query\");" else ""}
+	  ${if cfg.doh.enable then "user_pref(\"network.trr.mode\", ${cfg.doh.mode});" else ""}
+	  ${if cfg.doh.enable then "user_pref(\"network.trr.uri\", \"https://dns.quad9.net/dns-query\");" else ""}
+	  ${if cfg.doh.enable then "user_pref(\"network.trr.custom_uri\", \"https://dns.quad9.net/dns-query\");" else ""}
 
 	  # Enables http pipelining (sending multiple http requests instead of one)
 	  user_pref("network.http.pipelining", true);
 	  user_pref("network.http.proxy.pipelining", true);
 	  user_pref("network.http.pipelining.maxrequests", 10);
+
+	  # From what i could gather this kills webrtc (for connections outside proxies i assume)?
+	  # Documentation about this is poor, but it is a requirement listed in the i2p website
+	  # and it still hasnt affected me (though i should mention i dont use webrtc anyway :p)
+	  user_pref("media.peerconnection.ice.proxy_only", true);
 	  '';
 
         # Makes RFP letterbox dark (cause the default burns my eyes)
