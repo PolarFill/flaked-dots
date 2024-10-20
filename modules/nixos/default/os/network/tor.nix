@@ -18,10 +18,18 @@
 	description = "Enables snowflake proxy to help others circuvent censorship";
       };
 
-      enableTorClient = lib.options.mkOption { 
-	default = false;
-	type = lib.types.bool;
-	description = "Enables snowflake proxy to help others circuvent censorship";
+      torClient = {
+	enable = lib.options.mkOption { 
+	  # You can read more about slow and fast ports here https://nixos.wiki/wiki/Tor
+	  default = false;
+	  type = lib.types.bool;
+	  description = "Exposes tor via sock5 (9050 for 'slow' ports, 9063 for 'fast' ports)";	
+	};
+	usePrivoxy = lib.options.mkOption { 
+	  default = true;
+	  type = lib.types.bool;
+	  description = "Also exposes a privoxy http proxy to substitute the 'fast' ports for http";
+	};
       };
 
       torRelay = with lib.types; {
@@ -38,10 +46,10 @@
   config = lib.mkIf cfg.enable {
     
     services.tor = {
-      enable = if (cfg.enableTorClient || cfg.torRelay.enable) then true else false;
-      torsocks.enable = true;
+      enable = if (cfg.torClient.enable || cfg.torRelay.enable) then true else false;
+      torsocks.enable = cfg.torClient.enable;
       client = {
-	enable = cfg.enableTorClient;
+	enable = cfg.torClient.enable;
       };
       relay = {
 	enable = cfg.torRelay.enable;
@@ -68,6 +76,12 @@
     services.snowflake-proxy = {
       enable = cfg.enableSnowflake;
       capacity = 10;
+    };
+
+    services.privoxy = lib.mkIf ( cfg.torClient.enable && cfg.torClient.usePrivoxy ) {
+      # Avaible via port 8118
+      enable = true;
+      enableTor = true;
     };
 
   };
