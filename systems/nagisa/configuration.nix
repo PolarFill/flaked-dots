@@ -27,8 +27,7 @@
     system.network.nameservers = { enable = true; protocols = [ "dnscrypt2" ]; ignore_server_list = true; };
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = false;
-    system.virtualisation.single-gpu.enable = true;
-    system.virtualisation.virtualisation.enable = true;
+    system.virtualisation.virtualisation = { enable = true; active_domains = [ "whonix" ]; verbose = true; }; 
     system.localization = { enable = true; extraLocale = "pt_BR"; };
     system.kernel = { enable = true; kernel = "latest-libre"; };
 
@@ -69,6 +68,18 @@
   networking.firewall.enable = false;
 
   programs.nix-ld.enable = true;
+
+  # TODO: Make container module to transfer this piece of code there :p
+  virtualisation = {
+    podman = {
+      defaultNetwork.settings = {
+	dns_enabled = true;
+      };
+      dockerCompat = true;
+      dockerSocket.enable = true;
+      enable = true;
+    };
+  };
 
   system.stateVersion = "23.11";
 }
