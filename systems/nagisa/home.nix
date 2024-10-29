@@ -31,7 +31,7 @@
     system.ui.mako = { enable = true; theme = "rose-pine"; };
     system.xdg.portals = { enable = true; defaultPortal = "hyprland"; };
 
-    virtualization.distrobox = { enable = true; containers = ["arch-aur"]; nvidia = true; };
+    virtualization.distrobox = { enable = false; containers = ["arch-aur"]; nvidia = true; };
 
     applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
     applications.term.dev.git.enable = true;
@@ -48,7 +48,7 @@
     applications.flatpaks.gaming.sober = { enable = true; fflags = "default"; };
     applications.flatpaks.utils.sysdvr.enable = true;
 
-    applications.web.firefox = { enable = true; doh.enable = false; };
+    applications.web.firefox = { enable = true; doh.enable = false; proxies.i2p.enable = true; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };

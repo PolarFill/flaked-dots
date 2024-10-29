@@ -27,7 +27,7 @@
 
       proxies = {
 	i2p = {
-	  enable = lib.options.mkEnableOption { default = true; };
+	  enable = lib.options.mkEnableOption { default = false; };
 	  host = lib.options.mkOption { default = "127.0.0.1"; type = lib.types.str; };
 	  port = lib.options.mkOption { default = "4444"; type = lib.types.str; };
 	};
@@ -50,8 +50,25 @@
 	DisablePocket = true;
 	DisableFirefoxStudies = true;
         "3rdparty".Extensions = {
+	/*
 	  "foxyproxy@eric.h.jung" = {
 	    "mode" = "pattern";
+	    "sync" = false;
+            "autoBackup" = false;
+            "showPatternProxy" = false;
+            "passthrough" = "";
+            "container" = {
+              "incognito" = "";
+              "container-1" = "";
+              "container-2" = "";
+              "container-3" = "";
+              "container-4" = "";
+            };
+            "commands" = {
+              "setProxy" = "";
+              "setTabProxy" = "";
+              "quickAdd" = "";
+            };
 	    "data" = [ 
 	      {
 		"active" = cfg.proxies.i2p.enable;
@@ -63,6 +80,7 @@
 	      }
 	    ];
 	  };
+	*/
           "uBlock0@raymondhill.net".adminSettings = {
             userSettings = rec { 
 	      uiTheme = "dark"; 
