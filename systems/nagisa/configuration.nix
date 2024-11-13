@@ -24,7 +24,7 @@
     os.pipewire.enable = true;
     os.fonts.enable = true;
 
-    system.network.nameservers = { enable = true; protocols = [ "dnscrypt2" ]; ignore_server_list = true; };
+    system.network.nameservers = { enable = true; protocols = [ "anonymous-dnscrypt2" ]; ignore_server_list = true; relays = [ "*" ]; };
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = false;
     system.virtualisation.virtualisation = { enable = true; active_domains = [ "whonix" ]; verbose = true; }; 
