@@ -25,6 +25,9 @@
 	push-main = "push origin main";
 	s = "status";
 	commit = "commit -m";
+	dc = "diff --cached";
+	amend = "commit --amend --no-edit";
+	amend-msg = "commit --amend";
       };
 
       extraConfig = {
