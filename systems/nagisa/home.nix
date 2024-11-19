@@ -48,7 +48,7 @@
     applications.flatpaks.gaming.sober = { enable = true; fflags = "default"; };
     applications.flatpaks.utils.sysdvr.enable = true;
 
-    applications.web.firefox = { enable = true; doh.enable = false; proxies.i2p.enable = true; };
+    applications.web.firefox = { enable = true; doh.enable = false; proxies.i2p.enable = true; bookmarks = ["vtubers"]; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     
     applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };

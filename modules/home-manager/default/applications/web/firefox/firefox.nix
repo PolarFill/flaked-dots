@@ -5,12 +5,19 @@
   let
     cfg = config.homeModules.default.applications.web.firefox;
   in {
+
     options.homeModules.default.applications.web.firefox = {
 
       enable = lib.options.mkEnableOption {
         default = false;
 	type = lib.types.boolean;
         description = "Enables the firefox browser! (developer edition)";
+      };
+
+      bookmarks = lib.options.mkOption {
+	default = [ "nixos" ];
+	type = lib.types.listOf lib.types.str;
+	description = "Enables the specified lists of bookmarks";
       };
 
       doh = {
