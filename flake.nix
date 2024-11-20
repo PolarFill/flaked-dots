@@ -34,32 +34,22 @@
 	  inputs.nixpkgs.follows = "nixpkgs";
 	};  
 
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+        hyprland.url = "github:hyprwm/hyprland?submodules=1";
 	
 	hyprland-contrib = {
           url = "github:hyprwm/contrib";
           inputs.nixpkgs.follows = "nixpkgs";
         };     
 
-        hyprland-plugins = {
-          url = "github:hyprwm/hyprland-plugins";
-	  inputs.hyprland.follows = "hyprland";
-	};
-
-#	hyprfocus = {
-#          Broken
-#          url = "github:pyt0xic/hyprfocus";
-#          inputs.hyprland.follows = "hyprland";
+#        hyprland-plugins = {
+#          url = "github:hyprwm/hyprland-plugins";
+#	  inputs.hyprland.follows = "hyprland";
 #	};
 
-	hyprland-virtual-desktops = {
-          url = "github:levnikmyskin/hyprland-virtual-desktops";
-	  inputs.nixpkgs.follows = "hyprland";
-	};
-
-        hyprland-portal = {
-          url = "github:hyprwm/xdg-desktop-portal-hyprland";
-	};
+#	hyprland-virtual-desktops = {
+#          url = "github:levnikmyskin/hyprland-virtual-desktops";
+#	  inputs.nixpkgs.follows = "hyprland";
+#	};
 
 };
 
@@ -92,7 +82,7 @@
 		"${nagisaSysPath}/hardware-configuration.nix"
                 nur.nixosModules.nur
 		chaotic-cx.nixosModules.default
-		nix-flatpak.nixosModules.default
+		nix-flatpak.nixosModules.declarative-flatpak
 		nixvirt.nixosModules.default
 		home-manager.nixosModules.home-manager {
                   home-manager = {

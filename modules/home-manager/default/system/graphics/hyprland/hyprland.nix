@@ -24,8 +24,6 @@
       pkgs.gammastep # Needed for submap prettiness
       pkgs.swww
 
-#      inputs.hyprlang.packages.${pkgs.system}.hyprlang
-
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       inputs.hyprland-contrib.packages.${pkgs.system}.try_swap_workspace
       inputs.hyprland-contrib.packages.${pkgs.system}.scratchpad
@@ -39,7 +37,6 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       extraConfig = builtins.readFile ./hypr/hyprland.conf;
       plugins = [
-#        inputs.hyprfocus.packages.${pkgs.system}.hyprfocus
 #	inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
 #	inputs.hyprland-virtual-desktops.packages.${pkgs.system}.virtual-desktops
       ];
@@ -61,7 +58,6 @@
       __GL_VRR_ALLOWED = "0";
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    #  XDG_CURRENT_DESKTOP = "hyprland";
     };
   };
 }

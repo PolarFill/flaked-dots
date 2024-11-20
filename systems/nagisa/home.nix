@@ -7,7 +7,7 @@
     inputs.arkenfox.hmModules.default
     inputs.nur.hmModules.nur
     inputs.sops-nix.homeManagerModule
-    inputs.nix-flatpak.homeManagerModules.default
+    inputs.nix-flatpak.homeManagerModules.declarative-flatpak
     inputs.nixvim.homeManagerModules.nixvim
 
     ./secrets/sops-nix.nix
@@ -33,7 +33,7 @@
 
     virtualization.distrobox = { enable = false; containers = ["arch-aur"]; nvidia = true; };
 
-    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = true; };
+    applications.term.alacritty = { enable = true; alacrittyTheme = "rose-pine"; withSixel = false; };
     applications.term.dev.git.enable = true;
     applications.term.utils.btop = { enable = true; theme = "rose-pine"; };
     applications.term.utils.bat = { enable = true; theme = "rose-pine"; };

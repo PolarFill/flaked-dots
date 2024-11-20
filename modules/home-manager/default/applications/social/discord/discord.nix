@@ -33,12 +33,18 @@
       };
     };
 
+    # Basically recreating the original vesktop.desktop file to modify
+    # its startup flags
     xdg.desktopEntries.vesktop = {
       name = "Vesktop";
       genericName = "Discord";
-      exec = "vesktop --use-gl=angle --use-angle=vulkan --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto";
+      icon = "${pkgs.vesktop}/share/icons/hicolor/32x32/apps/vesktop.png";
+      exec = "vesktop --use-gl=angle --use-angle=vulkan --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto";
       terminal = false;
-      categories = [ "X-Social" ];
+      categories = [ "X-Social" "Network" "InstantMessaging" "Chat" ];
+      settings = {
+	Keywords = "discord;vencord;electron;chat";
+      };
     };
 
     xdg.configFile."vesktop/HomeManagerInit_settings.json" = {

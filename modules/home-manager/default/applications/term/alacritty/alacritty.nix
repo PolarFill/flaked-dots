@@ -35,7 +35,7 @@
       enable = true;
       settings = {
         
-	import = lib.mkIf ( cfg.alacrittyTheme != "default" ) [ ./themes/${cfg.alacrittyTheme}.toml ];
+	general.import = lib.mkIf ( cfg.alacrittyTheme != "default" ) [ ./themes/${cfg.alacrittyTheme}.toml ];
 
         font = { size = 11; };
         font.normal = { family = "cozette"; style = "Regular"; };
