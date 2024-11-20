@@ -30,6 +30,7 @@
     system.virtualisation.virtualisation = { enable = true; active_domains = [ "whonix" ]; verbose = true; }; 
     system.localization = { enable = true; extraLocale = "pt_BR"; };
     system.kernel = { enable = true; kernel = "latest-libre"; };
+    system.oom-killer = { enable = true; prefs = { prefer = "^nixos-rebuild$"; avoid = "firefox"; }; };
 
     applications.management.doas = { enable = true; users = [ "skynet" ]; };
     applications.misc.sunshine.enable = true;
