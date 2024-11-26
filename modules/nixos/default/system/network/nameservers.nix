@@ -2,7 +2,8 @@
 
   let
     cfg = config.nixosModules.default.system.network.nameservers;
-  in {
+    supportedProtocols = [ "plaintext" "dnscrypt2" "anonymous-dnscrypt2" "doh" "odoh" ];
+  in { 
 
     options.nixosModules.default.system.network.nameservers = {
 
@@ -20,36 +21,66 @@
 
       protocols = lib.options.mkOption {
 	default = "plaintext";
-	type = lib.types.oneOf [ (lib.types.listOf lib.types.str) (lib.types.str) ];
-	description = "Defines the allowed dns protocolss";
+	type = with lib.types;
+	  oneOf [ 
+	    (addCheck ( listOf str ) (protocols: lib.lists.any ( protocol: builtins.elem protocol supportedProtocols ) protocols) ) 
+	    (addCheck str ( protocol: builtins.elem protocol supportedProtocols )) 
+	  ];
+	description = "Defines the allowed dns protocols";
       };
-      
-      ignore_server_list = lib.options.mkOption {
-	default = false;
-	type = lib.types.bool;
-	description = "Ignore cfg.servers if a custom protocols besides plaintext is used";
+     
+      custom_protocols = {
+	ignore_server_list = lib.options.mkOption {
+	  default = false;
+	  type = lib.types.bool;
+	  description = ''Ignore cfg.servers if a custom protocol besides plaintext is used
+			  This makes dnscrypt-proxy2 choose servers automatically based on ping'';
+	};
+
+	relays = lib.options.mkOption {
+	  default = [ "*" ];
+	  type = lib.types.listOf lib.types.str;
+	  description = ''Specifies relays to be used for any dns server that supports anonymized requests.
+			  A widecard makes dnscrypt-proxy2 auto-select relays in a way that the dns and
+			  relay providers don't match, but this is VEEEEERY slow if you're using "ignore_server_list".'';
+	};
+
+	extra_relays = lib.options.mkOption {
+	  default = {};
+	  type = lib.types.listOf ( lib.types.submodule {
+	    options = {
+	      server_name = lib.options.mkOption {
+		type = lib.types.str;
+		description = "Servers for which the specified relay or relays will be used. Supports wildcards.";
+		example = [ "odoh-*" ];
+	      };
+	      via = lib.options.mkOption {
+		type = lib.types.listOf lib.types.str;
+		description = "The relays in which the dns requests will be routed through.";
+		example = [ "odohrelay-*" ];
+	      };
+	    };
+	  });
+	  description = ''Specifies relays to be used for any dns server that supports anonymized requests.
+			  A widecard makes dnscrypt-proxy2 auto-select relays in a way that the dns and
+			  relay providers don't match, but this is VEEEEERY slow if you're using "ignore_server_list".'';
+	};
+
+	ipv6 = lib.options.mkOption {
+	  default = false;
+	  type = lib.types.bool;
+	  description = "Enables ipv6 servers (might slow things down)";
+	};
       };
-
-      relays = lib.options.mkOption {
-	default = [ "anon-cs-brazil" ];
-	type = lib.types.listOf lib.types.str;
-	description = "Which relays to use for anonymous connections";
-      };
-
-      ipv6 = lib.options.mkOption {
-	default = false;
-	type = lib.types.bool;
-	description = "Enables ipv6 servers (might slow things down)";
-      };
-
-
 
     };
 
   config = lib.mkIf cfg.enable {
 
     networking = {
-      enableIPv6 = cfg.ipv6;
+      # Counter-intuitive ik, but this option is more usefull
+      # for dnscrypt-proxy2 purposes
+      enableIPv6 = cfg.custom_protocols.ipv6; 
       useDHCP = false;
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager = {
@@ -128,14 +159,14 @@
 
 	anonymized_dns = if (builtins.elem "anonymous-dnscrypt2" cfg.protocols || builtins.elem "odoh" cfg.protocols) then {
 	  routes = [
-	    { server_name = "*"; via = cfg.relays; }
+	    { server_name = "*"; via = cfg.custom_protocols.relays; }
 	    { server_name = "odoh-*"; via = [ "odohrelay-*" ]; }
-	  ];
+	  ] ++ cfg.custom_protocols.extra_relays;
 	  skip_incompatible = true;
 	} else {};	  
 
 
-	server_names = if cfg.ignore_server_list == false then [
+	server_names = if cfg.custom_protocols.ignore_server_list == false then [
 	  ( if (builtins.elem "quad9" cfg.servers) then "quad9-dnscrypt-ip4-nofilter-ecs-pri" else "" )
 	  ( if (builtins.elem "opennic" cfg.servers) then "opennic1_kekew_info_ipv4" else "" )
 	  ( if (builtins.elem "opennic" cfg.servers) then "opennic1_kekew_info_ipv6" else "" )
@@ -143,7 +174,7 @@
 	  ( if (builtins.elem "opennic" cfg.servers) then "opennic3_kekew_info_ipv4" else "" )
 	] else [];
 
-	static = if cfg.ignore_server_list == false then {
+	static = if cfg.custom_protocols.ignore_server_list == false then {
 	  opennic1_kekew_info_ipv4 = { stamp = if (builtins.elem "opennic" cfg.servers) then "sdns://AQcAAAAAAAAAEDEwOS45MS4xODQuMjE6NTQgkuaRfQrPuzkvgT0_YGI_k5veCS_7H3cT4_Y3sgmop3oaMi5kbnNjcnlwdC1jZXJ0Lmtla2V3LmluZm8" else ""; };
 	  opennic1_kekew_info_ipv6 = { stamp = if (builtins.elem "opennic" cfg.servers) then "sdns://AQcAAAAAAAAAF1syMDAzOmE6NjRiOjNiMDA6OjhdOjU0IJLmkX0Kz7s5L4E9P2BiP5Ob3gkv-x93E-P2N7IJqKd6GjIuZG5zY3J5cHQtY2VydC5rZWtldy5pbmZv" else ""; };
 	  opennic2_kekew_info_ipv4 = { stamp = if (builtins.elem "opennic" cfg.servers) then "sdns://AQcAAAAAAAAAETgwLjE1Mi4yMDMuMTM0OjU0IPNqicy0t-MhnuiOf1kb4b42I1dkOyqw3NQ9VWhjjkbwGjIuZG5zY3J5cHQtY2VydC5rZWtldy5pbmZv" else ""; };

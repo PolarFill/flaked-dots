@@ -24,7 +24,16 @@
     os.pipewire.enable = true;
     os.fonts.enable = true;
 
-    system.network.nameservers = { enable = true; protocols = [ "anonymous-dnscrypt2" ]; ignore_server_list = true; relays = [ "*" ]; };
+    system.network.nameservers = { 
+      enable = true; 
+      protocols = [ "anonymous-dnscrypt2" ]; 
+      custom_protocols = { 
+	ignore_server_list = true; 
+	relays = [ "anon-cs-brazil" ];
+	extra_relays = [ { server_name = "anon-cs-*"; via = [ "dnscrypt.pt-anon-*" ]; } ];
+      }; 
+    };
+
     system.network.ssh = { enable = true; secrets = true; };
     system.network.wireless.enable = false;
     system.virtualisation.virtualisation = { enable = true; active_domains = [ "whonix" ]; verbose = true; }; 
