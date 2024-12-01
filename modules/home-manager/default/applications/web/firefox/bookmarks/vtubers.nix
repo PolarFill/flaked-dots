@@ -27,6 +27,7 @@
 		{ name = "Miniko"; url = "https://twitch.tv/minikomew"; }
 		{ name = "Bao"; url = "https://twitch.tv/bao"; }
 		{ name = "Shylily"; url = "https://twitch.tv/shylily"; }
+		{ name = "LemonLeaf / fauna's past life"; url = "https://twitch.tv/lemonleaf"; }
 	      ];
 	    }
 
@@ -49,6 +50,7 @@
 		{ name = "Miniko | Twitter"; url = "https://twitter.com/minikomew"; }
 		{ name = "Bao | Twitter"; url = "https://twitter.com/baovtuber"; }
 		{ name = "Shylily | Twitter"; url = "https://twitter.com/shylilytwitch"; }
+		{ name = "LemonLeaf / fauna's past life | Twitter"; url = "https://twitter.com/LemonLeafASMR"; }
 	      ];
 	    }
 
