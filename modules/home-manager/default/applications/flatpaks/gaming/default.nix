@@ -7,5 +7,6 @@ in {
     ./steam.nix
     ./sober/sober.nix
     ./mcpe-launcher.nix
+    ./pokemmo/pokemmo.nix
   ];
 }

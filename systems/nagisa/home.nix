@@ -45,6 +45,7 @@
     applications.flatpaks.bottles.enable = true;
     applications.flatpaks.gaming.steam.enable = true;
     applications.flatpaks.gaming.mcpe-launcher.enable = true;
+    applications.flatpaks.gaming.pokemmo.enable = true;
     applications.flatpaks.gaming.sober = { enable = true; fflags = "default"; };
     applications.flatpaks.utils.sysdvr.enable = true;
 
