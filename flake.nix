@@ -34,12 +34,14 @@
 	  inputs.nixpkgs.follows = "nixpkgs";
 	};  
 
+	ucodenix.url = "github:e-tho/ucodenix";
+
         hyprland.url = "github:hyprwm/hyprland?submodules=1";
 	
 	hyprland-contrib = {
           url = "github:hyprwm/contrib";
           inputs.nixpkgs.follows = "nixpkgs";
-        };     
+        };    
 
 #        hyprland-plugins = {
 #          url = "github:hyprwm/hyprland-plugins";

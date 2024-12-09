@@ -976,7 +976,8 @@
         "nixvirt": "nixvirt",
         "nur": "nur",
         "nvidia-patch": "nvidia-patch",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "ucodenix": "ucodenix"
       }
     },
     "sops-nix": {
@@ -1090,6 +1091,21 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "ucodenix": {
+      "locked": {
+        "lastModified": 1733351763,
+        "narHash": "sha256-0VzlIIE+78t0YptH5lkkrIy8FwM1Z9Hkn75n9RTF5Hc=",
+        "owner": "e-tho",
+        "repo": "ucodenix",
+        "rev": "56c73f68361ae713be920bd221592c381f82fa23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "e-tho",
+        "repo": "ucodenix",
         "type": "github"
       }
     },

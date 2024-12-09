@@ -5,6 +5,7 @@
     outputs.nixosModules.default
     outputs.nixosModules.nagisa
     inputs.sops-nix.nixosModules.sops
+    inputs.ucodenix.nixosModules.default
 
     ./secrets/sops-nix-sys.nix
   ];
@@ -16,7 +17,7 @@
     hardware.nvidia.proprietary = { enable = true; withUnlocks = false; branch = "stable"; };
     hardware.nvidia.nouveau.enable = false;
     hardware.storageDrives = { enable = true; userUid = "1000"; };
-    hardware.microcode = { enable = true; cpu = "amd"; };
+    hardware.microcode = { enable = true; cpu = "amd"; amd.cpuId = "00A50F00"; };
 
     os.network.lokinet.enable = false;
     os.network.tor = { enable = true; torClient.enable = true; };

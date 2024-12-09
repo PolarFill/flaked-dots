@@ -19,7 +19,14 @@ in {
       default = null;
       type = lib.types.nullOr (lib.types.addCheck lib.types.str (x: builtins.elem x [ "intel" "amd" ]));
       description = "Sets the desired cpu. Obrigatory";
+    };
 
+    amd = {
+      cpuId = lib.options.mkOption {
+	default = null;
+	type = lib.types.nullOr lib.types.str;
+	description = "Sets the cpu model for which the AMD microcode is being fetched";
+      };
     };
 
   };
@@ -27,7 +34,11 @@ in {
   config = lib.mkIf cfg.enable {
     
     hardware.cpu.intel.updateMicrocode = lib.mkIf ( cfg.cpu == "intel" ) true;
-    hardware.cpu.amd.updateMicrocode = lib.mkIf ( cfg.cpu == "amd" ) true;
+
+    services.ucodenix = lib.mkIf ( cfg.cpu == "amd" ) {
+      enable = true;
+      cpuModelId = cfg.amd.cpuId;
+    };
 
   };
 }
