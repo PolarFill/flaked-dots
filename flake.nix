@@ -82,7 +82,7 @@
 	    modules = [
                 "${nagisaSysPath}/configuration.nix"
 		"${nagisaSysPath}/hardware-configuration.nix"
-                nur.nixosModules.nur
+                nur.modules.nixos.default
 		chaotic-cx.nixosModules.default
 		nix-flatpak.nixosModules.declarative-flatpak
 		nixvirt.nixosModules.default

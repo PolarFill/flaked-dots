@@ -154,7 +154,7 @@
 
       profiles.default = {
        
-        extensions = with config.nur.repos.rycee.firefox-addons; [
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
          # bypass-paywalls-clean
 	  indie-wiki-buddy
 	  ublock-origin

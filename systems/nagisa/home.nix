@@ -5,7 +5,7 @@
   imports = [ 
     outputs.homeModules.default 
     inputs.arkenfox.hmModules.default
-    inputs.nur.hmModules.nur
+    inputs.nur.modules.homeManager.default
     inputs.sops-nix.homeManagerModule
     inputs.nix-flatpak.homeManagerModules.declarative-flatpak
     inputs.nixvim.homeManagerModules.nixvim

@@ -22,7 +22,8 @@
       noto-fonts-color-emoji
       noto-fonts-emoji-blob-bin
       noto-fonts-monochrome-emoji
-      ( nerdfonts.override { fonts = [ "FiraCode" "0xProto" ]; } )
+      nerd-fonts.fira-code
+      nerd-fonts._0xproto
     ];
 
   };
