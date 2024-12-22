@@ -52,7 +52,24 @@
     applications.web.firefox = { enable = true; doh.enable = false; proxies.i2p.enable = true; bookmarks = ["vtubers"]; };
     applications.web.qbittorrent = { enable = true; theme = "rose-pine"; };
     
-    applications.social.discord = { enable = true; theme = [ "rose-pine" ]; };
+    applications.social.discord = { 
+      enable = true; 
+      mods = { 
+	enable = true; 
+	client = "legcord";
+	themes = [ "rose-pine" ];
+	equicord = {
+	  enable = true;
+	  plugins = [
+	    "AnonymizeFileNames"
+	    "AtSomeone"
+	    "BANger"
+	  ];
+	};
+	shelter.enable = true;
+	betterdiscord.enable = true;
+      };
+    };
 
     applications.rice.wofi = { enable = true; theme = "rose-pine"; };
     applications.rice.swww = { enable = true; wallpaper = ./assets/frieren.jpeg; };
